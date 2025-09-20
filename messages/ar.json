@@ -1,0 +1,28 @@
+{
+  "HomePage": {
+    "title": "مرحبا بالعالم!"
+  },
+  "Header": {
+    "name": "ملفي الشخصي",
+    "about": "من أنا",
+    "experience": "الخبرة",
+    "projects": "المشاريع",
+    "contact": "اتصل",
+    "contactMe": "اتصل بي"
+  },
+  "AboutMe": {
+    "title": "حولى عني"
+  },
+  "Experience": {
+    "title": "خبرتى"
+  },
+  "Skills": {
+    "title": "المهارات"
+  },
+  "Projects": {
+    "title": "المشاريع"
+  },
+  "Contact": {
+    "title": "اتصال"
+  }
+}

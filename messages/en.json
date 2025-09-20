@@ -1,0 +1,13 @@
+{
+  "HomePage": {
+    "title": "Hello world!"
+  },
+  "Header": {
+    "name": "My Portfolio",
+    "about": "About",
+    "experience": "Experience",
+    "projects": "Projects",
+    "contact": "Contact",
+    "contactMe": "Contact Me"
+  }
+}
