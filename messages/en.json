@@ -1,13 +1,29 @@
 {
-  "HomePage": {
-    "title": "Hello world!"
-  },
-  "Header": {
-    "name": "My Portfolio",
-    "about": "About",
-    "experience": "Experience",
-    "projects": "Projects",
-    "contact": "Contact",
-    "contactMe": "Contact Me"
+    "HomePage": {
+      "title": "Hello World!"
+    },
+    "Header": {
+      "name": "My Profile",
+      "about": "About Me",
+      "experience": "Experience",
+      "projects": "Projects",
+      "contact": "Contact",
+      "contactMe": "Contact Me"
+    },
+    "AboutMe": {
+      "title": "About Me"
+    },
+    "Experience": {
+      "title": "My Experience"
+    },
+    "Skills": {
+      "title": "Skills"
+    },
+    "Projects": {
+      "title": "Projects"
+    },
+    "Contact": {
+      "title": "Contact"
+    }
   }
-}
+  

@@ -29,8 +29,10 @@ function getSystemPreference(): "light" | "dark" {
 }
 
 function applyTheme(theme: "light" | "dark") {
-  if (typeof document === "undefined") return;
-  document.documentElement.setAttribute("data-theme", theme);
+    if (document.documentElement.getAttribute("data-theme") !== theme) {
+      document.documentElement.setAttribute("data-theme", theme);
+      console.log("Applied theme:", theme);
+    }
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {

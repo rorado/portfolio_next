@@ -1,6 +1,5 @@
 "use client"
 
-import { Button } from "@/components/ui/button"
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
 import { useLanguage } from "@/components/language-context"
 import { getTranslation } from "@/lib/i18n"

@@ -8,7 +8,16 @@ import { useTranslations } from "next-intl";
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
+  // Translation hook for Header namespace
   const t = useTranslations("Header");
+
+  // Pages must match keys in your messages JSON
+  const pages: { id: string; label: any }[] = [
+    { id: "about", label: "about" },
+    { id: "experience", label: "experience" },
+    { id: "projects", label: "projects" },
+    { id: "contact", label: "contact" },
+  ];
 
   useEffect(() => {
     const handleScroll = () => {
@@ -32,44 +41,28 @@ export function Header() {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-xl font-bold text-foreground">{t("name")}</div>
-
-          <div className="hidden md:flex items-center space-x-8">
-            <button
-              onClick={() => scrollToSection("about")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t("about")}
-            </button>
-            <button
-              onClick={() => scrollToSection("experience")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t("experience")}
-            </button>
-            <button
-              onClick={() => scrollToSection("projects")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t("projects")}
-            </button>
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
-              {t("contact")}
-            </button>
+          {/* Site title */}
+          <div className="text-xl font-bold text-[var(--color-text)] cursor-pointer">
+            {t("contact")}
           </div>
 
+          {/* Desktop nav */}
+          <div className="hidden md:flex items-center space-x-8">
+            {pages.map((page) => (
+              <button
+                key={page.id}
+                onClick={() => scrollToSection(page.id)}
+                className="text-[var(--color-text)] hover:text-[var(--color-text)] hover:underline cursor-pointer transition-colors"
+              >
+                {t(page.label)}
+              </button>
+            ))}
+          </div>
+
+          {/* Theme toggle & language switcher */}
           <div className="flex items-center gap-3">
             <ThemeToggle />
             <LanguageSwitcher />
-            <button
-              onClick={() => scrollToSection("contact")}
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
-            >
-              {t("contact")}
-            </button>
           </div>
         </div>
       </nav>

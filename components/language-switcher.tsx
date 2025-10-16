@@ -1,8 +1,7 @@
 "use client";
 
-import { usePathname } from "next/navigation";
+import { usePathname, useRouter } from "next/navigation";
 import { useLocale } from "next-intl";
-import { languages } from "@/lib/languages";
 
 import {
   Select,
@@ -12,35 +11,41 @@ import {
   SelectTrigger,
   SelectValue,
 } from "@/components/ui/select";
+import { locales } from "@/i18n";
+
+// ✅ Define your locales here or export them from i18n/config.ts
 
 export function LanguageSwitcher() {
-  const locale = useLocale();
-  console.log(locale);
+  const router = useRouter();
   const pathname = usePathname();
+  const locale = useLocale();
 
   const changeLanguage = (newLocale: string) => {
-    setLocale(newLocale);
-    // Change the URL to the new locale
+    if (newLocale === locale) return;
+
     const segments = pathname.split("/");
     segments[1] = newLocale;
-    const newPath = segments.join("/");
-    window.location.href = newPath;
+    const newPath = segments.join("/") || "/";
+    router.replace  (newPath);
   };
 
   return (
-    <Select>
-      <SelectTrigger className="w-[100px] h-8 text-sm px-2" size="sm">
-        <SelectValue placeholder="Select a language" />
+    <Select
+      onValueChange={(value) => changeLanguage(value)}
+      defaultValue={locale}
+    >
+      <SelectTrigger
+        size="sm"
+        className="hidden sm:flex w-[100px] h-8 text-xs px-2 py-1 rounded-md 
+        bg-[color:var(--color-surface)] border border-[color:var(--color-border)] 
+        text-[color:var(--color-text-muted)] hover:text-[color:var(--color-text)]"
+      >
+        <SelectValue placeholder="Select language" />
       </SelectTrigger>
       <SelectContent>
         <SelectGroup>
-          {Object.entries(languages).map(([code, name]) => (
-            <SelectItem
-              key={code}
-              value={code}
-              onClick={() => changeLanguage(code)}
-              className="cursor-pointer rounded-full"
-            >
+          {Object.entries(locales).map(([code, name]) => (
+            <SelectItem key={code} value={name}>
               {name}
             </SelectItem>
           ))}
