@@ -8,11 +8,11 @@ import { Card, CardContent } from "@/components/ui/card"
 import { Input } from "@/components/ui/input"
 import { Textarea } from "@/components/ui/textarea"
 import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react"
-import { useLanguage } from "@/components/language-context"
-import { getTranslation } from "@/lib/i18n"
+// import { useLanguage } from "@/components/language-context"
+// import { getTranslation } from "@/lib/i18n"
 
 export function Contact() {
-  const { language } = useLanguage()
+//   const { language } = useLanguage()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -48,10 +48,11 @@ export function Contact() {
     <section id="contact" className="py-20 px-6">
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance">{getTranslation(language, "contactTitle")}</h2>
-          <p className="text-muted-foreground max-w-2xl mx-auto leading-relaxed">
-            {getTranslation(language, "contactDescription")}
+          <h2 className="text-3xl lg:text-4xl font-bold text-balance ">contactTitle</h2>
+          <p className=" max-w-2xl mx-auto leading-relaxed">
+            contactDescription
           </p>
+          <div className="w-12 h-0.5 bg-primary mb-6 mx-auto"></div>
         </div>
 
         <div className="grid lg:grid-cols-2 gap-12 mb-12">
@@ -64,7 +65,7 @@ export function Contact() {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">{getTranslation(language, "email")}</h3>
+                    <h3 className="font-semibold text-foreground mb-1">email</h3>
                     <p className="text-muted-foreground">alex@example.com</p>
                   </div>
                 </CardContent>
@@ -76,7 +77,7 @@ export function Contact() {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">{getTranslation(language, "phone")}</h3>
+                    <h3 className="font-semibold text-foreground mb-1">phone</h3>
                     <p className="text-muted-foreground">+1 (555) 123-4567</p>
                   </div>
                 </CardContent>
@@ -88,7 +89,7 @@ export function Contact() {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">{getTranslation(language, "location")}</h3>
+                    <h3 className="font-semibold text-foreground mb-1">location</h3>
                     <p className="text-muted-foreground">San Francisco, CA</p>
                   </div>
                 </CardContent>
@@ -103,21 +104,21 @@ export function Contact() {
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
                     <label htmlFor="name" className="text-sm font-medium text-foreground">
-                      {getTranslation(language, "name")}
+                     name
                     </label>
                     <Input
                       id="name"
                       name="name"
                       value={formData.name}
                       onChange={handleInputChange}
-                      placeholder={getTranslation(language, "namePlaceholder")}
+                      placeholder={"namePlaceholder"}
                       required
                       className="bg-background/50 border-border focus:border-primary transition-colors"
                     />
                   </div>
                   <div className="space-y-2">
                     <label htmlFor="email" className="text-sm font-medium text-foreground">
-                      {getTranslation(language, "email")}
+                        email
                     </label>
                     <Input
                       id="email"
@@ -125,7 +126,7 @@ export function Contact() {
                       type="email"
                       value={formData.email}
                       onChange={handleInputChange}
-                      placeholder={getTranslation(language, "emailPlaceholder")}
+                      placeholder="emailPlaceholder"
                       required
                       className="bg-background/50 border-border focus:border-primary transition-colors"
                     />
@@ -134,14 +135,14 @@ export function Contact() {
 
                 <div className="space-y-2">
                   <label htmlFor="subject" className="text-sm font-medium text-foreground">
-                    {getTranslation(language, "subject")}
+                    subject
                   </label>
                   <Input
                     id="subject"
                     name="subject"
                     value={formData.subject}
                     onChange={handleInputChange}
-                    placeholder={getTranslation(language, "subjectPlaceholder")}
+                    placeholder="subjectPlaceholder"
                     required
                     className="bg-background/50 border-border focus:border-primary transition-colors"
                   />
@@ -149,14 +150,14 @@ export function Contact() {
 
                 <div className="space-y-2">
                   <label htmlFor="message" className="text-sm font-medium text-foreground">
-                    {getTranslation(language, "message")}
+                    message
                   </label>
                   <Textarea
                     id="message"
                     name="message"
                     value={formData.message}
                     onChange={handleInputChange}
-                    placeholder={getTranslation(language, "messagePlaceholder")}
+                    placeholder="messagePlaceholder"
                     required
                     rows={5}
                     className="bg-background/50 border-border focus:border-primary transition-colors resize-none"
@@ -172,17 +173,17 @@ export function Contact() {
                   {isSubmitted ? (
                     <>
                       <CheckCircle className="w-4 h-4 mr-2" />
-                      {getTranslation(language, "messageSent")}
+                      messageSent
                     </>
                   ) : isSubmitting ? (
                     <>
                       <div className="w-4 h-4 mr-2 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                      {getTranslation(language, "sending")}
+                      sending
                     </>
                   ) : (
                     <>
                       <Send className="w-4 h-4 mr-2" />
-                      {getTranslation(language, "sendMessage")}
+                      sendMessage
                     </>
                   )}
                 </Button>
@@ -192,7 +193,7 @@ export function Contact() {
         </div>
 
         <footer className="mt-20 pt-8 border-t border-border text-center">
-          <p className="text-muted-foreground text-sm">{getTranslation(language, "footer")}</p>
+          <p className="text-muted-foreground text-sm">"footer</p>
         </footer>
       </div>
     </section>

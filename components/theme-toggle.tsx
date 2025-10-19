@@ -18,7 +18,7 @@ export default function ThemeToggle() {
         aria-label="Toggle theme"
         title={`Switch to ${mode === "dark" ? "light" : "dark"} mode`}
         onClick={() => dispatch(toggleMode())}
-        className="p-2 rounded-lg hover:bg-[color:var(--color-hover)] text-[color:var(--color-text-muted)] hover:text-[color:var(--color-text)] transition-colors cursor-pointer"
+        className="p-2 rounded-lg text-text transition-colors cursor-pointer"
       >
         <Icon icon={icon} className="text-lg" />
       </button>

@@ -33,16 +33,16 @@ export function Header() {
 
   return (
     <header
-      className={`fixed top-0 w-full z-50 transition-all duration-300 ${
+      className={`fixed top-0 w-full z-50 transition-all duration-300${
         isScrolled
-          ? "bg-background/80 backdrop-blur-md border-b border-border"
+          ? "bg-bg/80 backdrop-blur-md border-b border-border"
           : "bg-transparent"
       }`}
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
           {/* Site title */}
-          <div className="text-xl font-bold text-[var(--color-text)] cursor-pointer">
+          <div className="text-xl font-bold cursor-pointer">
             {t("contact")}
           </div>
 
@@ -52,7 +52,7 @@ export function Header() {
               <button
                 key={page.id}
                 onClick={() => scrollToSection(page.id)}
-                className="text-[var(--color-text)] hover:text-[var(--color-text)] hover:underline cursor-pointer transition-colors"
+                className="hover:underline cursor-pointer transition-colors"
               >
                 {t(page.label)}
               </button>

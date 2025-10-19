@@ -23,9 +23,10 @@ export default async function RootLayout({ children, params }: RootLayoutProps) 
   if (!locale) throw new Error("Locale param is missing");
 
   const messages = await getMessages({ locale });
+  const dir = locale === "ar" ? "rtl" : "ltr";
 
   return (
-    <html lang={locale} className={`${inter.variable} ${jetbrainsMono.variable} ${poppins.variable}`}>
+    <html lang={locale} dir={dir} className={`${inter.variable} ${jetbrainsMono.variable} ${poppins.variable}`}>
       <body className="font-sans antialiased bg-bg text-text dark:bg-bg dark:text-text">
         <ThemeInitializer /> 
         <ClientProviderWrapper locale={locale} messages={messages}>

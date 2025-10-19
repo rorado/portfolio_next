@@ -2,11 +2,11 @@
 
 import { Card, CardContent } from "@/components/ui/card"
 import { ExternalLink, Github } from "lucide-react"
-import { useLanguage } from "@/components/language-context"
-import { getTranslation } from "@/lib/i18n"
+// import { useLanguage } from "@/components/language-context"
+// import { getTranslation } from "@/lib/i18n"
 
 export function Projects() {
-  const { language } = useLanguage()
+//   const { language } = useLanguage()
 
   const projects = [
     {
@@ -41,33 +41,33 @@ export function Projects() {
   return (
     <section id="projects" className="py-20 px-6">
       <div className="container mx-auto">
-        <div className="space-y-2 mb-12">
-          <h2 className="text-sm uppercase tracking-wider text-muted-foreground">
-            {getTranslation(language, "projectsTitle")}
-          </h2>
-          <div className="w-12 h-0.5 bg-primary"></div>
+        <div className="space-y-3">
+            <h2 className="text-sm uppercase tracking-widest font-semibold">
+            projectsTitle
+            </h2>
+            <div className="w-12 h-0.5 bg-primary mb-6"></div>
         </div>
 
         <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
             <Card
               key={index}
-              className="group bg-card border-border hover:border-primary/50 transition-all duration-300"
+              className="group border-border hover:border-primary/50 transition-all duration-300"
             >
               <CardContent className="p-0">
-                <div className="relative overflow-hidden rounded-t-lg">
+                <div className="relative overflow-hidden rounded-t-lg ">
                   <img
                     src={project.image || "/placeholder.svg"}
                     alt={project.title}
                     className="w-full h-48 object-cover group-hover:scale-105 transition-transform duration-300"
                   />
-                  <div className="absolute inset-0 bg-background/80 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
+                  <div className="absolute inset-0  opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4">
                     <a
                       href={project.github}
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-background rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                      title={getTranslation(language, "viewCode")}
+                      title={"viewCode"}
                     >
                       <Github className="w-5 h-5" />
                     </a>
@@ -76,7 +76,7 @@ export function Projects() {
                       target="_blank"
                       rel="noopener noreferrer"
                       className="p-2 bg-background rounded-full hover:bg-primary hover:text-primary-foreground transition-colors"
-                      title={getTranslation(language, "viewProject")}
+                      title={"viewProject"}
                     >
                       <ExternalLink className="w-5 h-5" />
                     </a>

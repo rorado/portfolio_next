@@ -24,6 +24,25 @@
     },
     "Contact": {
       "title": "Contact"
+    },
+    "Hero": {
+        "name": "Sohaib Ahrich",
+        "role": "Full-Stack Developer",
+        "description": "I build modern, fast, and beautiful web experiences — focusing on clean code, performance, and design that feels alive.",
+        "viewWork": "View My Work",
+        "contactMe": "Contact Me",
+        "github": "GitHub",
+        "linkedin": "LinkedIn",
+        "email": "Email",
+        "avatarAlt": "SA",
+        "scrollToAbout": "Scroll to about section"
+    },
+    "About": {
+        "title": "About Me",
+        "subtitle": "Passionate Developer Creating Impactful Digital Experiences",
+        "p1": "I’m a full-stack developer with a deep love for clean design, powerful performance, and intuitive UX. My mission is to create seamless web experiences that feel effortless.",
+        "p2": "With expertise in technologies like React, Next.js, and Tailwind, I craft products that are not only functional but also delightful to use — bridging creativity and engineering.",
+        "p3": "Outside of coding, I’m passionate about learning new frameworks, exploring design trends, and contributing to open-source projects that push the web forward."
     }
   }
   

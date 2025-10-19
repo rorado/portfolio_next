@@ -1,87 +1,111 @@
-"use client"
+"use client";
 
-import { ArrowDown, Github, Linkedin, Mail } from "lucide-react"
-import { useLanguage } from "@/components/language-context"
-import { getTranslation } from "@/lib/i18n"
+import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { Button } from "./ui/button";
+import { useTranslations } from "next-intl";
 
 export function Hero() {
-  const { language } = useLanguage()
+  const t = useTranslations("Hero");
 
   const scrollToSection = (id: string) => {
-    document.getElementById(id)?.scrollIntoView({ behavior: "smooth" })
-  }
+    const section = document.getElementById(id);
+    if (section) section.scrollIntoView({ behavior: "smooth" });
+  };
 
   return (
-    <section className="min-h-screen flex items-center justify-center px-6 relative">
+    <section className="relative flex items-center justify-center px-6 py-20 md:py-32 lg:py-40">
       <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
+        {/* --- Left Content --- */}
         <div className="space-y-8">
           <div className="space-y-4">
-            <h1 className="text-5xl lg:text-7xl font-bold text-balance">{getTranslation(language, "name")}</h1>
-            <h2 className="text-xl lg:text-2xl text-muted-foreground font-medium">
-              {getTranslation(language, "title")}
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-balance">
+              {t("name")}
+            </h1>
+            <h2 className="text-xl md:text-2xl text-muted-foreground font-medium">
+              {t("role")}
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              {getTranslation(language, "heroDescription")}
+              {t("description")}
             </p>
           </div>
 
-          <div className="flex items-center gap-4">
+          <div className="flex flex-wrap gap-4">
             <Button
               onClick={() => scrollToSection("projects")}
-              className="bg-primary text-primary-foreground hover:bg-primary/90"
+              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
             >
-              {getTranslation(language, "viewWork")}
+              {t("viewWork")}
             </Button>
             <Button
               variant="outline"
               onClick={() => scrollToSection("contact")}
-              className="border-border text-foreground hover:bg-secondary"
+              className="border-border text-foreground hover:bg-secondary transition-all duration-300 cursor-pointer"
             >
-              {getTranslation(language, "contactMe")}
+              {t("contactMe")}
             </Button>
           </div>
 
+          {/* --- Social Links --- */}
           <div className="flex items-center gap-6">
-            <a
-              href="https://github.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
+            <SocialIcon href="https://github.com" label={t("github")}>
               <Github className="w-6 h-6" />
-            </a>
-            <a
-              href="https://linkedin.com"
-              target="_blank"
-              rel="noopener noreferrer"
-              className="text-muted-foreground hover:text-foreground transition-colors"
-            >
+            </SocialIcon>
+            <SocialIcon href="https://linkedin.com" label={t("linkedin")}>
               <Linkedin className="w-6 h-6" />
-            </a>
-            <a href="mailto:alex@example.com" className="text-muted-foreground hover:text-foreground transition-colors">
+            </SocialIcon>
+            <SocialIcon href="mailto:alex@example.com" label={t("email")}>
               <Mail className="w-6 h-6" />
-            </a>
+            </SocialIcon>
           </div>
         </div>
 
-        <div className="relative">
-          <div className="w-full h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-lg flex items-center justify-center">
+        {/* --- Right Visual --- */}
+        <div className="relative flex justify-center">
+          <div className="w-full max-w-sm h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center shadow-lg">
             <div className="text-center space-y-4">
-              <div className="w-24 h-24 bg-primary/30 rounded-full mx-auto flex items-center justify-center">
-                <span className="text-2xl font-bold text-foreground">AJ</span>
+              <div className="w-24 h-24 bg-primary/30 rounded-full mx-auto flex items-center justify-center shadow-md">
+                <span className="text-2xl font-bold text-foreground">
+                  {t("avatarAlt")}
+                </span>
               </div>
-              <p className="text-muted-foreground">{getTranslation(language, "title")}</p>
+              <p className="text-muted-foreground text-lg font-medium">
+                {t("role")}
+              </p>
             </div>
           </div>
         </div>
       </div>
 
+      {/* --- Scroll Down Button --- */}
       <button
         onClick={() => scrollToSection("about")}
-        className="absolute bottom-8 left-1/2 transform -translate-x-1/2 text-muted-foreground hover:text-foreground transition-colors animate-bounce"
+        className="absolute bottom-8 left-1/2 -translate-x-1/2 text-muted-foreground hover:text-[var(--color-text)] transition-colors animate-bounce cursor-pointer"
+        aria-label={t("scrollToAbout")}
       >
         <ArrowDown className="w-6 h-6" />
       </button>
     </section>
-  )
+  );
+}
+
+function SocialIcon({
+  href,
+  label,
+  children,
+}: {
+  href: string;
+  label: string;
+  children: React.ReactNode;
+}) {
+  return (
+    <a
+      href={href}
+      target="_blank"
+      rel="noopener noreferrer"
+      aria-label={label}
+      className="hover:scale-110 transition-colors duration-300 text-[var(--color-primary)]"
+    >
+      {children}
+    </a>
+  );
 }

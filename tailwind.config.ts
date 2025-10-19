@@ -1,24 +1,24 @@
 import { type Config } from "tailwindcss";
 
 const config: Config = {
-  darkMode: ["class", '[data-theme="dark"]'], // correct array form
+  darkMode: ["class", '[data-theme="dark"]'],
   theme: {
     extend: {
       colors: {
-        bg: "var(--color-bg)",
-        surface: "var(--color-surface)",
-        elevated: "var(--color-elevated)",
-        text: "var(--color-text)",
-        muted: "var(--color-text-muted)",
-        border: "var(--color-border)",
-        primary: "var(--color-primary)",
-        "primary-dark": "var(--color-primary-dark)",
+        bg: "var(--bg)",
+        surface: "var(--surface)",
+        elevated: "var(--elevated)",
+        text: "var(--text)",
+        muted: "var(--text-muted)",
+        border: "var(--border)",
+        primary: "var(--primary)",
+        "primary-dark": "var(--primary-dark)",
         "primary-contrast": "var(--color-primary-contrast)",
-        secondary: "var(--color-secondary)",
-        hover: "var(--color-hover)",
-        success: "var(--color-success)",
-        danger: "var(--color-danger)",
-        warning: "var(--color-warning)",
+        secondary: "var(--secondary)",
+        hover: "var(--hover)",
+        success: "var(--success)",
+        danger: "var(--danger)",
+        warning: "var(--warning)",
       },
       borderRadius: {
         DEFAULT: "var(--radius)",

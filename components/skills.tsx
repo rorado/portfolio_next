@@ -1,34 +1,34 @@
 "use client"
 
-import { useLanguage } from "@/components/language-context"
-import { getTranslation } from "@/lib/i18n"
+// import { useLanguage } from "@/components/language-context"
+// import { getTranslation } from "@/lib/i18n"
 
 export function Skills() {
-  const { language } = useLanguage()
+//   const { language } = useLanguage()
 
   const skillCategories = [
     {
-      title: getTranslation(language, "frontend"),
+      title: "frontend",
       skills: ["React", "Next.js", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Vue.js"],
     },
     {
-      title: getTranslation(language, "backend"),
+      title: "backend",
       skills: ["Node.js", "Express", "Prisma", "PostgreSQL", "MongoDB", "REST APIs", "GraphQL"],
     },
     {
-      title: getTranslation(language, "tools"),
+      title: "tools",
       skills: ["Git", "Docker", "AWS", "Vercel", "Jest", "Webpack", "Linux"],
     },
   ]
 
   return (
-    <section className="py-20 px-6 bg-card/30">
+    <section className="py-20 px-6 bg-card/10">
       <div className="container mx-auto">
-        <div className="space-y-2 mb-12">
-          <h2 className="text-sm uppercase tracking-wider text-muted-foreground">
-            {getTranslation(language, "skillsTitle")}
-          </h2>
-          <div className="w-12 h-0.5 bg-primary"></div>
+        <div className="space-y-3">
+            <h2 className="text-sm uppercase tracking-widest font-semibold">
+            skillsTitle
+            </h2>
+            <div className="w-12 h-0.5 bg-primary mb-6"></div>
         </div>
 
         <div className="grid md:grid-cols-3 gap-8">
