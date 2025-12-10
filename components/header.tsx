@@ -1,9 +1,9 @@
 "use client";
 
 import { useState, useEffect } from "react";
-import { LanguageSwitcher } from "@/components/language-switcher";
 import ThemeToggle from "./theme-toggle";
 import { useTranslations } from "next-intl";
+import { label } from "framer-motion/client";
 
 export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
@@ -12,7 +12,7 @@ export function Header() {
   const t = useTranslations("Header");
 
   // Pages must match keys in your messages JSON
-  const pages: { id: string; label: any }[] = [
+  const pages: { id: string; label:string }[] = [
     { id: "about", label: "about" },
     { id: "experience", label: "experience" },
     { id: "projects", label: "projects" },
@@ -54,7 +54,7 @@ export function Header() {
                 onClick={() => scrollToSection(page.id)}
                 className="hover:underline cursor-pointer transition-colors"
               >
-                {t(page.label)}
+                {page.label}
               </button>
             ))}
           </div>
@@ -62,7 +62,6 @@ export function Header() {
           {/* Theme toggle & language switcher */}
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            {/* <LanguageSwitcher /> */}
           </div>
         </div>
       </nav>

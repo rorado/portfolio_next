@@ -9,7 +9,7 @@ import { store } from "@/app/store";
 interface Props {
   children: ReactNode;
   locale: string;
-  messages: Record<string, any>;
+  messages: Record<string, Record<string, string>>;
 }
 
 export default function ClientProviderWrapper({ children, locale, messages }: Props) {

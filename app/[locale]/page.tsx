@@ -11,7 +11,7 @@ export default async function Home() {
     <div className="p-6 rounded shadow-soft text-[var(--text)]">
         <Header />
         <Hero /> 
-        <About />
+        <About /> 
         <Experience />
         <Projects />
         <Skills />
