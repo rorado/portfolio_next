@@ -1,10 +1,6 @@
 import createNextIntlPlugin from "next-intl/plugin";
 
-const nextConfig: any = {
-  eslint: {
-    ignoreDuringBuilds: true
-  }
-};
+const nextConfig = {};
 
 const withNextIntl = createNextIntlPlugin();
 
