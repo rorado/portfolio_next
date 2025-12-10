@@ -3,6 +3,7 @@
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import { useTranslations } from "next-intl";
+import Image from "next/image";
 
 export function Hero() {
   const t = useTranslations("Hero");
@@ -47,10 +48,10 @@ export function Hero() {
 
           {/* --- Social Links --- */}
           <div className="flex items-center gap-6">
-            <SocialIcon href="https://github.com" label={t("github")}>
+            <SocialIcon href="https://github.com/rorado" label={t("github")}>
               <Github className="w-6 h-6" />
             </SocialIcon>
-            <SocialIcon href="https://linkedin.com" label={t("linkedin")}>
+            <SocialIcon href="https://www.lin kedin.com/in/sohaib-ahrich" label={t("linkedin")}>
               <Linkedin className="w-6 h-6" />
             </SocialIcon>
             <SocialIcon href="mailto:alex@example.com" label={t("email")}>
@@ -62,16 +63,12 @@ export function Hero() {
         {/* --- Right Visual --- */}
         <div className="relative flex justify-center">
           <div className="w-full max-w-sm h-96 bg-gradient-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center shadow-lg">
-            <div className="text-center space-y-4">
-              <div className="w-24 h-24 bg-primary/30 rounded-full mx-auto flex items-center justify-center shadow-md">
-                <span className="text-2xl font-bold text-foreground">
-                  {t("avatarAlt")}
-                </span>
-              </div>
-              <p className="text-muted-foreground text-lg font-medium">
-                {t("role")}
-              </p>
-            </div>
+            <Image 
+              src="/sahrich.jpg" 
+              alt="My Photo" 
+              width={500} 
+              height={500}
+            />
           </div>
         </div>
       </div>

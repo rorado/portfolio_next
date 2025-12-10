@@ -8,35 +8,37 @@ import { ExternalLink, Github } from "lucide-react"
 export function Projects() {
 //   const { language } = useLanguage()
 
-  const projects = [
+  const projects = 
+  [
     {
       title: "E-Commerce Platform",
       description:
-        "Full-stack e-commerce solution built with Next.js, Prisma, and PostgreSQL. Features include user authentication, payment processing, and admin dashboard.",
+        "A full-stack e-commerce application built with Next.js, Prisma, and PostgreSQL. Includes user authentication, product management, payment processing, and an admin dashboard.",
       image: "/modern-ecommerce-dashboard.png",
-      technologies: ["Next.js", "Prisma", "PostgreSQL", "Stripe", "TypeScript"],
-      github: "https://github.com",
-      live: "https://example.com",
+      technologies: ["Next.js", "Prisma", "PostgreSQL", "Auth.js", "TypeScript", "Shadcn UI"],
+      github: "https://github.com/rorado/nextJs_Ecommerse",
+      live: "https://fluffy-choux-fc8754.netlify.app",
     },
     {
-      title: "Task Management App",
+      title: "Book Store API",
       description:
-        "Collaborative task management application with real-time updates, drag-and-drop functionality, and team collaboration features.",
+        "A RESTful API for managing books, authors, and inventory. Built with Express, Node.js, and Prisma for efficient database operations.",
       image: "/task-management-interface.png",
-      technologies: ["React", "Node.js", "Socket.io", "MongoDB", "Express"],
-      github: "https://github.com",
-      live: "https://example.com",
+      technologies: ["Express", "Node.js", "REST API", "Prisma"],
+      github: "https://github.com/rorado/express_books_store",
+      live: "#",
     },
     {
-      title: "Weather Analytics Dashboard",
-      description:
-        "Data visualization dashboard that displays weather patterns and analytics using Chart.js and external weather APIs.",
-      image: "/weather-analytics-dashboard.jpg",
-      technologies: ["Vue.js", "Chart.js", "Node.js", "REST APIs", "CSS3"],
-      github: "https://github.com",
-      live: "https://example.com",
-    },
-  ]
+    title: "E-Commerce Pizza Site",
+    description:
+      "A full-stack e-commerce pizza ordering platform built with Next.js, Prisma, and Node.js. Users can browse pizzas, customize orders, manage their cart, authenticate, and track orders. Includes an admin interface for product and order management.",
+    image: "/command-pizza.png",
+    technologies: ["Next.js", "Auth.js", "Node.js", "REST APIs", "Prisma"],
+    github: "https://github.com/rorado/full_stack_food_next",
+    live: "https://full-stack-pizza.vercel.app",
+  },
+  ];
+
 
   return (
     <section id="projects" className="py-20 px-6">

@@ -62,7 +62,7 @@ export function Header() {
           {/* Theme toggle & language switcher */}
           <div className="flex items-center gap-3">
             <ThemeToggle />
-            <LanguageSwitcher />
+            {/* <LanguageSwitcher /> */}
           </div>
         </div>
       </nav>

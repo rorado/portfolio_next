@@ -13,11 +13,7 @@ export function Skills() {
     },
     {
       title: "backend",
-      skills: ["Node.js", "Express", "Prisma", "PostgreSQL", "MongoDB", "REST APIs", "GraphQL"],
-    },
-    {
-      title: "tools",
-      skills: ["Git", "Docker", "AWS", "Vercel", "Jest", "Webpack", "Linux"],
+      skills: ["Node.js", "Express", "Prisma", "PostgreSQL", "REST APIs"],
     },
   ]
 
@@ -26,7 +22,7 @@ export function Skills() {
       <div className="container mx-auto">
         <div className="space-y-3">
             <h2 className="text-sm uppercase tracking-widest font-semibold">
-            skillsTitle
+              skillsTitle
             </h2>
             <div className="w-12 h-0.5 bg-primary mb-6"></div>
         </div>

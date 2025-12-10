@@ -48,10 +48,7 @@ export function Contact() {
     <section id="contact" className="py-20 px-6">
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance ">contactTitle</h2>
-          <p className=" max-w-2xl mx-auto leading-relaxed">
-            contactDescription
-          </p>
+          <h2 className="text-3xl lg:text-4xl font-bold text-balance ">Contact</h2>
           <div className="w-12 h-0.5 bg-primary mb-6 mx-auto"></div>
         </div>
 
@@ -66,7 +63,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">email</h3>
-                    <p className="text-muted-foreground">alex@example.com</p>
+                    <p className="text-muted-foreground">sohaybahrich3@gmail.con</p>
                   </div>
                 </CardContent>
               </Card>
@@ -78,7 +75,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">phone</h3>
-                    <p className="text-muted-foreground">+1 (555) 123-4567</p>
+                    <p className="text-muted-foreground">+212690201401</p>
                   </div>
                 </CardContent>
               </Card>
@@ -90,7 +87,7 @@ export function Contact() {
                   </div>
                   <div>
                     <h3 className="font-semibold text-foreground mb-1">location</h3>
-                    <p className="text-muted-foreground">San Francisco, CA</p>
+                    <p className="text-muted-foreground">Tetouan Morocco</p>
                   </div>
                 </CardContent>
               </Card>
@@ -192,9 +189,9 @@ export function Contact() {
           </Card>
         </div>
 
-        <footer className="mt-20 pt-8 border-t border-border text-center">
+        {/* <footer className="mt-20 pt-8 border-t border-border text-center">
           <p className="text-muted-foreground text-sm">"footer</p>
-        </footer>
+        </footer> */}
       </div>
     </section>
   )

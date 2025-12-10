@@ -6,28 +6,12 @@ export function Experience() {
 
   const experiences = [
     {
-      period: "2024 — PRESENT",
-      title: "seniorDeveloper",
-      company: "TechCorp",
+      period: "2023 — 2024",
+      title: "web devloper",
+      company: "Vierra Digital LLC",
       description:
         "Build and maintain critical components used to construct TechCorp's frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility and performance.",
       technologies: ["JavaScript", "TypeScript", "React", "Next.js", "Node.js", "Prisma"],
-    },
-    {
-      period: "2022 — 2024",
-      title: "fullStackDeveloper",
-      company: "StartupXYZ",
-      description:
-        "Developed and shipped highly interactive web applications for millions of users. Collaborated with a team of designers and developers to create seamless user experiences using modern web technologies.",
-      technologies: ["React", "Node.js", "PostgreSQL", "AWS", "Docker"],
-    },
-    {
-      period: "2020 — 2022",
-      title: "Frontend Developer",
-      company: "Digital Agency",
-      description:
-        "Created responsive web applications and landing pages for various clients. Focused on performance optimization and cross-browser compatibility while maintaining pixel-perfect designs.",
-      technologies: ["HTML", "CSS", "JavaScript", "Vue.js", "SASS"],
     },
   ]
 
