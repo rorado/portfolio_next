@@ -37,7 +37,7 @@ export function About() {
               I&apos;m a full-stack developer with a deep love for clean design, powerful performance, and intuitive UX. My mission is to create seamless web experiences that feel effortless.
             </p>
             <p>
-              With expertise in technologies like React, Next.js, and Tailwind, I craft products that are not only functional but also delightful to use — bridging creativity and engineering.
+              With expertise in technologies like React, Next.js, and Tailwind, I craft products that are not only functional but also delightful to use bridging creativity and engineering.
             </p>
            <p>
             Outside of coding, I&apos;m passionate about learning new frameworks, exploring design trends, and contributing to open-source projects that push the web forward.

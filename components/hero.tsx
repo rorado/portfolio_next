@@ -23,7 +23,7 @@ export function Hero() {
               Full-Stack Developer
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              I build modern, fast, and beautiful web experiences — focusing on clean code,
+              I build modern, fast, and beautiful web experiences focusing on clean code,
               performance, and design that feels alive.
             </p>
           </div>
@@ -101,7 +101,7 @@ function SocialIcon({
       target="_blank"
       rel="noopener noreferrer"
       aria-label={label}
-      className="hover:scale-110 transition-colors duration-300 text-[var(--color-primary)]"
+      className="hover:scale-110 transition-colors duration-300 text-(--color-primary)"
     >
       {children}
     </a>
