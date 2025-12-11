@@ -12,10 +12,9 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"], variable: 
 
 interface RootLayoutProps {
   children: ReactNode;
-  params: Promise<{ locale: string }>; // ✅ make params async
 }
 
-export default async function RootLayout({ children, params }: RootLayoutProps) {
+export default async function RootLayout({ children}: RootLayoutProps) {
   // ✅ Await params before accessing
 
   return (
