@@ -5,6 +5,7 @@ import "./theme.css";
 
 import ClientProviderWrapper from "@/components/provideres/ClientProviderWrapper";
 import ThemeInitializer from "@/components/provideres/ThemeInitializer";
+import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
 const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
@@ -13,6 +14,11 @@ const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"], variable: 
 interface RootLayoutProps {
   children: ReactNode;
 }
+
+export const metadata: Metadata = {
+  title: "Rorado portfolio",
+  description: "portfolio",
+};
 
 export default async function RootLayout({ children}: RootLayoutProps) {
   // ✅ Await params before accessing

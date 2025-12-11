@@ -35,7 +35,7 @@ export function Header() {
     >
       <nav className="container mx-auto px-6 py-4">
         <div className="flex items-center justify-between">
-          <div className="text-xl font-bold cursor-pointer">Contact</div>
+          <div className="text-xl font-bold cursor-pointer">Rorado</div>
 
           <div className="hidden md:flex items-center space-x-8">
             {pages.map((page) => (
