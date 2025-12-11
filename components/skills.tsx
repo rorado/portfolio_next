@@ -9,7 +9,7 @@ export function Skills() {
   const skillCategories = [
     {
       title: "frontend",
-      skills: ["React", "Next.js", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "Vue.js"],
+      skills: ["React", "Next.js", "TypeScript", "HTML5", "CSS3", "Tailwind CSS", "JS", "Redux"],
     },
     {
       title: "backend",
@@ -27,7 +27,7 @@ export function Skills() {
             <div className="w-12 h-0.5 bg-primary mb-6"></div>
         </div>
 
-        <div className="grid md:grid-cols-3 gap-8">
+        <div className="grid md:grid-cols-2 gap-8">
           {skillCategories.map((category, index) => (
             <div key={index} className="space-y-6">
               <h3 className="text-xl font-semibold text-foreground">{category.title}</h3>

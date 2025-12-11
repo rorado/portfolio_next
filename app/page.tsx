@@ -8,7 +8,7 @@ import { Contact } from "@/components/contact";
 
 export default async function Home() {
   return (
-    <div className="p-6 rounded shadow-soft text-[var(--text)]">
+    <div className="p-6 rounded shadow-soft text-(--text)">
         <Header />
         <Hero /> 
         <About /> 

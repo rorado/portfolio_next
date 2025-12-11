@@ -14,7 +14,7 @@ export function Projects() {
       title: "E-Commerce Platform",
       description:
         "A full-stack e-commerce application built with Next.js, Prisma, and PostgreSQL. Includes user authentication, product management, payment processing, and an admin dashboard.",
-      image: "/modern-ecommerce-dashboard.png",
+      image: "/CosmicSite.png",
       technologies: ["Next.js", "Prisma", "PostgreSQL", "Auth.js", "TypeScript", "Shadcn UI"],
       github: "https://github.com/rorado/nextJs_Ecommerse",
       live: "https://fluffy-choux-fc8754.netlify.app",
@@ -32,7 +32,7 @@ export function Projects() {
     title: "E-Commerce Pizza Site",
     description:
       "A full-stack e-commerce pizza ordering platform built with Next.js, Prisma, and Node.js. Users can browse pizzas, customize orders, manage their cart, authenticate, and track orders. Includes an admin interface for product and order management.",
-    image: "/command-pizza.png",
+    image: "/PizzaSite.png",
     technologies: ["Next.js", "Auth.js", "Node.js", "REST APIs", "Prisma"],
     github: "https://github.com/rorado/full_stack_food_next",
     live: "https://full-stack-pizza.vercel.app",
