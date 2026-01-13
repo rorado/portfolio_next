@@ -23,8 +23,8 @@ export function Hero() {
               Full-Stack Developer
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              I build modern, fast, and beautiful web experiences focusing on clean code,
-              performance, and design that feels alive.
+              I build modern, fast, and beautiful web experiences focusing on
+              clean code, performance, and design that feels alive.
             </p>
           </div>
 
@@ -64,12 +64,7 @@ export function Hero() {
         {/* --- Right Visual --- */}
         <div className="relative flex justify-center">
           <div className="w-full max-w-sm h-96 bg-linear-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center shadow-lg">
-            <Image 
-              src="/sahrich.jpg" 
-              alt="SA"
-              width={500} 
-              height={500}
-            />
+            <Image src="/imagepo.png" alt="SA" width={500} height={500} />
           </div>
         </div>
       </div>
