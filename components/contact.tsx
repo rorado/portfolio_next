@@ -1,54 +1,67 @@
-"use client"
+"use client";
 
-import type React from "react"
+import type React from "react";
 
-import { useState } from "react"
-import { Button } from "@/components/ui/button"
-import { Card, CardContent } from "@/components/ui/card"
-import { Input } from "@/components/ui/input"
-import { Textarea } from "@/components/ui/textarea"
-import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react"
+import { useState } from "react";
+import { Button } from "@/components/ui/button";
+import { Card, CardContent } from "@/components/ui/card";
+import { Input } from "@/components/ui/input";
+import { Textarea } from "@/components/ui/textarea";
+import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react";
+import { sendMail } from "@/lib/sendEmail";
 // import { useLanguage } from "@/components/language-context"
 // import { getTranslation } from "@/lib/i18n"
 
 export function Contact() {
-//   const { language } = useLanguage()
+  //   const { language } = useLanguage()
   const [formData, setFormData] = useState({
     name: "",
     email: "",
     subject: "",
     message: "",
-  })
-  const [isSubmitting, setIsSubmitting] = useState(false)
-  const [isSubmitted, setIsSubmitted] = useState(false)
+  });
+  const [isSubmitting, setIsSubmitting] = useState(false);
+  const [isSubmitted, setIsSubmitted] = useState(false);
 
-  const handleInputChange = (e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>) => {
-    const { name, value } = e.target
-    setFormData((prev) => ({ ...prev, [name]: value }))
-  }
+  const handleInputChange = (
+    e: React.ChangeEvent<HTMLInputElement | HTMLTextAreaElement>,
+  ) => {
+    const { name, value } = e.target;
+    setFormData((prev) => ({ ...prev, [name]: value }));
+  };
 
   const handleSubmit = async (e: React.FormEvent) => {
-    e.preventDefault()
-    setIsSubmitting(true)
+    e.preventDefault();
+    setIsSubmitting(true);
 
     // Simulate form submission
-    await new Promise((resolve) => setTimeout(resolve, 2000))
+    await sendMail(
+      formData.subject,
+      `
+      <h1>New Contact Form Submission</h1>
+      <p><strong>Name:</strong> ${formData.name}</p>
+      <p><strong>Email:</strong> ${formData.email}</p>
+      <p><strong>Message:</strong><br/>${formData.message}</p>
+    `,
+    );
 
-    setIsSubmitting(false)
-    setIsSubmitted(true)
+    setIsSubmitting(false);
+    setIsSubmitted(true);
 
     // Reset form after 3 seconds
     setTimeout(() => {
-      setIsSubmitted(false)
-      setFormData({ name: "", email: "", subject: "", message: "" })
-    }, 3000)
-  }
+      setIsSubmitted(false);
+      setFormData({ name: "", email: "", subject: "", message: "" });
+    }, 3000);
+  };
 
   return (
     <section id="contact" className="py-20 px-6">
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-12">
-          <h2 className="text-3xl lg:text-4xl font-bold text-balance ">Contact</h2>
+          <h2 className="text-3xl lg:text-4xl font-bold text-balance ">
+            Contact
+          </h2>
           <div className="w-12 h-0.5 bg-primary mb-6 mx-auto"></div>
         </div>
 
@@ -62,8 +75,12 @@ export function Contact() {
                     <Mail className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">email</h3>
-                    <p className="text-muted-foreground">sohaybahrich3@gmail.con</p>
+                    <h3 className="font-semibold text-foreground mb-1">
+                      email
+                    </h3>
+                    <p className="text-muted-foreground">
+                      sohaybahrich3@gmail.com
+                    </p>
                   </div>
                 </CardContent>
               </Card>
@@ -74,7 +91,9 @@ export function Contact() {
                     <Phone className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">phone</h3>
+                    <h3 className="font-semibold text-foreground mb-1">
+                      phone
+                    </h3>
                     <p className="text-muted-foreground">+212690201401</p>
                   </div>
                 </CardContent>
@@ -86,7 +105,9 @@ export function Contact() {
                     <MapPin className="w-6 h-6 text-primary" />
                   </div>
                   <div>
-                    <h3 className="font-semibold text-foreground mb-1">location</h3>
+                    <h3 className="font-semibold text-foreground mb-1">
+                      location
+                    </h3>
                     <p className="text-muted-foreground">Tetouan Morocco</p>
                   </div>
                 </CardContent>
@@ -100,8 +121,11 @@ export function Contact() {
               <form onSubmit={handleSubmit} className="space-y-6">
                 <div className="grid md:grid-cols-2 gap-4">
                   <div className="space-y-2">
-                    <label htmlFor="name" className="text-sm font-medium text-foreground">
-                     name
+                    <label
+                      htmlFor="name"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      name
                     </label>
                     <Input
                       id="name"
@@ -110,12 +134,15 @@ export function Contact() {
                       onChange={handleInputChange}
                       placeholder={"namePlaceholder"}
                       required
-                      className="bg-background/50 border-border focus:border-primary transition-colors"
+                      className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
                     />
                   </div>
                   <div className="space-y-2">
-                    <label htmlFor="email" className="text-sm font-medium text-foreground">
-                        email
+                    <label
+                      htmlFor="email"
+                      className="text-sm font-medium text-foreground"
+                    >
+                      email
                     </label>
                     <Input
                       id="email"
@@ -125,13 +152,16 @@ export function Contact() {
                       onChange={handleInputChange}
                       placeholder="emailPlaceholder"
                       required
-                      className="bg-background/50 border-border focus:border-primary transition-colors"
+                      className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
                     />
                   </div>
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="subject" className="text-sm font-medium text-foreground">
+                  <label
+                    htmlFor="subject"
+                    className="text-sm font-medium text-foreground"
+                  >
                     subject
                   </label>
                   <Input
@@ -141,12 +171,15 @@ export function Contact() {
                     onChange={handleInputChange}
                     placeholder="subjectPlaceholder"
                     required
-                    className="bg-background/50 border-border focus:border-primary transition-colors"
+                    className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
                   />
                 </div>
 
                 <div className="space-y-2">
-                  <label htmlFor="message" className="text-sm font-medium text-foreground">
+                  <label
+                    htmlFor="message"
+                    className="text-sm font-medium text-foreground"
+                  >
                     message
                   </label>
                   <Textarea
@@ -157,7 +190,7 @@ export function Contact() {
                     placeholder="messagePlaceholder"
                     required
                     rows={5}
-                    className="bg-background/50 border-border focus:border-primary transition-colors resize-none"
+                    className="bg-background/50 border-border focus:border-primary transition-colors resize-none mt-1.5"
                   />
                 </div>
 
@@ -194,5 +227,5 @@ export function Contact() {
         </footer> */}
       </div>
     </section>
-  )
+  );
 }
