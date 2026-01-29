@@ -55,7 +55,7 @@ export function Hero() {
             >
               <Linkedin className="w-6 h-6" />
             </SocialIcon>
-            <SocialIcon href="mailto:alex@example.com" label="Email">
+            <SocialIcon href="mailto:sohaybahrich3@gmail.com" label="Email">
               <Mail className="w-6 h-6" />
             </SocialIcon>
           </div>
