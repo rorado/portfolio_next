@@ -26,6 +26,22 @@ export function Projects() {
       live: "https://fluffy-choux-fc8754.netlify.app",
     },
     {
+      title: "AI-Powered Journal App",
+      description:
+        "A smart journaling app that uses AI to help users reflect on their day. It can generate journal entries, provide insights, and offer advice or evaluations based on the user's input.",
+      image: "/journalApp.png",
+      technologies: [
+        "Next.js",
+        "TypeScript",
+        "Langchain",
+        "Tailwind CSS",
+        "zod",
+        
+      ],
+      github: "https://github.com/rorado/AI_journaly",
+      live: "https://ai-journal-rorado.vercel.app/",
+    },
+    {
       title: "Book Store API",
       description:
         "A RESTful API for managing books, authors, and inventory. Built with Express, Node.js, and Prisma for efficient database operations.",
