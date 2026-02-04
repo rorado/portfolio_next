@@ -36,7 +36,6 @@ export function Projects() {
         "Langchain",
         "Tailwind CSS",
         "zod",
-        
       ],
       github: "https://github.com/rorado/AI_journaly",
       live: "https://ai-journal-rorado.vercel.app/",
