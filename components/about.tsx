@@ -22,7 +22,7 @@ export function About() {
             </div>
 
             <h3 className="text-3xl md:text-4xl lg:text-5xl font-bold leading-tight">
-              Passionate Developer Creating Impactful Digital Experiences
+              Building products that feel effortless and look unforgettable
             </h3>
           </motion.div>
 
@@ -34,15 +34,21 @@ export function About() {
             className="space-y-6 text-lg text-muted-foreground leading-relaxed"
           >
             <p>
-              I&apos;m a full-stack developer with a deep love for clean design, powerful performance, and intuitive UX. My mission is to create seamless web experiences that feel effortless.
+              I&apos;m a full‑stack developer who loves clean interfaces,
+              reliable architecture, and performance that scales. My focus is
+              crafting digital experiences that are intuitive, fast, and
+              accessible.
             </p>
             <p>
-              With expertise in technologies like React, Next.js, and Tailwind, I craft products that are not only functional but also delightful to use bridging creativity and engineering.
+              I work across the stack with React, Next.js, and TypeScript,
+              bridging product design and engineering to deliver polished
+              solutions from concept to launch.
             </p>
-           <p>
-            Outside of coding, I&apos;m passionate about learning new frameworks, exploring design trends, and contributing to open-source projects that push the web forward.
-          </p>
-
+            <p>
+              When I&apos;m not coding, I explore new frameworks, study design
+              systems, and contribute to open‑source tools that help teams ship
+              faster.
+            </p>
           </motion.div>
         </div>
       </div>

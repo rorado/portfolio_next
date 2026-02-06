@@ -1,16 +1,30 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
+import { motion } from "framer-motion";
 
 export function Experience() {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 16 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
+
   const experiences = [
     {
-      period: "2023 — 2024",
-      title: "web devloper",
+      period: "2024 — 2025",
+      title: "Full-Stack Developer",
       company: "Vierra Digital LLC",
       live: "https://vierradev.com/",
       description:
-        "Build and maintain critical components used to construct TechCorp's frontend, across the whole product. Work closely with cross-functional teams, including developers, designers, and product managers, to implement and advocate for best practices in web accessibility and performance.",
+        "Lead development of client-facing platforms from discovery to launch. Ship scalable features, optimize performance, and collaborate with designers to turn high‑fidelity UI into resilient, accessible interfaces.",
       technologies: [
         "JavaScript",
         "TypeScript",
@@ -20,6 +34,41 @@ export function Experience() {
         "Prisma",
       ],
     },
+    {
+      period: "2022 — 2023",
+      title: "Frontend Engineer",
+      company: "Freelance / Contract",
+      description:
+        "Delivered modern marketing sites and web apps for startups, focused on conversions, motion, and SEO. Built reusable components, set up analytics, and improved lighthouse scores through code splitting and asset optimization.",
+      technologies: [
+        "Next.js",
+        "Tailwind CSS",
+        "Framer Motion",
+        "Vercel",
+        "Figma",
+      ],
+    },
+    {
+      period: "2021 — present",
+      title: "Full Stack Developer",
+      company: "upwork / Freelance",
+      // live: "https://github.com/rorado",
+      description:
+        "Built REST APIs and dynamic web apps for clients across e_commerce, SaaS, and content platforms. Implemented features end to end, from database schema design to frontend integration, ensuring performant and maintainable code.",
+      technologies: [
+        "Node.js",
+        "Express",
+        "PostgreSQL",
+        "Prisma",
+        "REST APIs",
+        "React",
+        "Next.js",
+        "Tailwind CSS",
+        "TypeScript",
+        "Auth.js",
+        "Framer Motion",
+      ],
+    },
   ];
 
   return (
@@ -27,14 +76,20 @@ export function Experience() {
       <div className="container mx-auto">
         <div className="space-y-3">
           <h2 className="text-sm uppercase tracking-widest font-semibold">
-            experienceTitle
+            Experience
           </h2>
           <div className="w-12 h-0.5 bg-primary mb-6"></div>
         </div>
 
-        <div className="space-y-12">
+        <motion.div
+          className="space-y-12"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           {experiences.map((exp, index) => (
-            <div key={index} className="group">
+            <motion.div key={index} className="group" variants={item}>
               <div className="grid lg:grid-cols-4 gap-6">
                 <div className="lg:col-span-1">
                   <p className="text-sm font-mono">{exp.period}</p>
@@ -45,13 +100,16 @@ export function Experience() {
                     <h3 className="text-xl font-semibold transition-colors">
                       {exp.title} · {exp.company}
                     </h3>
-                    <a
-                      href={exp.live}
-                      target="_blank"
-                      className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                    >
-                      <ExternalLink className="w-4 h-4  transition-opacity" />
-                    </a>
+                    {exp.live && (
+                      <a
+                        href={exp.live}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                        className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                      >
+                        <ExternalLink className="w-4 h-4  transition-opacity" />
+                      </a>
+                    )}
                   </div>
 
                   <p className="text-muted-foreground leading-relaxed">
@@ -70,9 +128,9 @@ export function Experience() {
                   </div>
                 </div>
               </div>
-            </div>
+            </motion.div>
           ))}
-        </div>
+        </motion.div>
       </div>
     </section>
   );

@@ -2,6 +2,7 @@ import { Header } from "@/components/header";
 import { Hero } from "@/components/hero";
 import { About } from "@/components/about";
 import { Experience } from "@/components/experience";
+import { Education } from "@/components/education";
 import { Projects } from "@/components/projects";
 import { Skills } from "@/components/skills";
 import { Contact } from "@/components/contact";
@@ -9,13 +10,14 @@ import { Contact } from "@/components/contact";
 export default async function Home() {
   return (
     <div className="p-6 rounded shadow-soft text-(--text)">
-        <Header />
-        <Hero /> 
-        <About /> 
-        <Experience />
-        <Projects />
-        <Skills />
-       <Contact />
+      <Header />
+      <Hero />
+      <About />
+      <Experience />
+      <Education />
+      <Projects />
+      <Skills />
+      <Contact />
     </div>
   );
 }

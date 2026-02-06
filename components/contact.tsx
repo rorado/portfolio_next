@@ -9,11 +9,24 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react";
 import { sendMail } from "@/lib/sendEmail";
+import { motion } from "framer-motion";
 // import { useLanguage } from "@/components/language-context"
 // import { getTranslation } from "@/lib/i18n"
 
 export function Contact() {
   //   const { language } = useLanguage()
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  };
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -60,167 +73,181 @@ export function Contact() {
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-balance ">
-            Contact
+            Let’s build something great
           </h2>
           <div className="w-12 h-0.5 bg-primary mb-6 mx-auto"></div>
         </div>
 
-        <div className="grid lg:grid-cols-2 gap-12 mb-12">
+        <motion.div
+          className="grid lg:grid-cols-2 gap-12 mb-12"
+          variants={container}
+          initial="hidden"
+          whileInView="show"
+          viewport={{ once: true }}
+        >
           {/* Contact Info Cards */}
           <div className="space-y-6">
             <div className="grid gap-6">
-              <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                <CardContent className="p-6 flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <Mail className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      email
-                    </h3>
-                    <p className="text-muted-foreground">
-                      sohaybahrich3@gmail.com
-                    </p>
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div variants={item}>
+                <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                  <CardContent className="p-6 flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                      <Mail className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        Email
+                      </h3>
+                      <p className="text-muted-foreground">
+                        sohaybahrich3@gmail.com
+                      </p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                <CardContent className="p-6 flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <Phone className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      phone
-                    </h3>
-                    <p className="text-muted-foreground">+212690201401</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div variants={item}>
+                <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                  <CardContent className="p-6 flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                      <Phone className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        Phone
+                      </h3>
+                      <p className="text-muted-foreground">+212690201401</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
 
-              <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
-                <CardContent className="p-6 flex items-center space-x-4">
-                  <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
-                    <MapPin className="w-6 h-6 text-primary" />
-                  </div>
-                  <div>
-                    <h3 className="font-semibold text-foreground mb-1">
-                      location
-                    </h3>
-                    <p className="text-muted-foreground">Tetouan Morocco</p>
-                  </div>
-                </CardContent>
-              </Card>
+              <motion.div variants={item}>
+                <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
+                  <CardContent className="p-6 flex items-center space-x-4">
+                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                      <MapPin className="w-6 h-6 text-primary" />
+                    </div>
+                    <div>
+                      <h3 className="font-semibold text-foreground mb-1">
+                        Location
+                      </h3>
+                      <p className="text-muted-foreground">Tetouan, Morocco</p>
+                    </div>
+                  </CardContent>
+                </Card>
+              </motion.div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <Card className="bg-card/50 border-border">
-            <CardContent className="p-8">
-              <form onSubmit={handleSubmit} className="space-y-6">
-                <div className="grid md:grid-cols-2 gap-4">
+          <motion.div variants={item}>
+            <Card className="bg-card/50 border-border">
+              <CardContent className="p-8">
+                <form onSubmit={handleSubmit} className="space-y-6">
+                  <div className="grid md:grid-cols-2 gap-4">
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="name"
+                        className="text-sm font-medium text-foreground"
+                      >
+                        Name
+                      </label>
+                      <Input
+                        id="name"
+                        name="name"
+                        value={formData.name}
+                        onChange={handleInputChange}
+                        placeholder="Your name"
+                        required
+                        className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
+                      />
+                    </div>
+                    <div className="space-y-2">
+                      <label
+                        htmlFor="email"
+                        className="text-sm font-medium text-foreground"
+                      >
+                        Email
+                      </label>
+                      <Input
+                        id="email"
+                        name="email"
+                        type="email"
+                        value={formData.email}
+                        onChange={handleInputChange}
+                        placeholder="you@example.com"
+                        required
+                        className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
+                      />
+                    </div>
+                  </div>
+
                   <div className="space-y-2">
                     <label
-                      htmlFor="name"
+                      htmlFor="subject"
                       className="text-sm font-medium text-foreground"
                     >
-                      name
+                      Subject
                     </label>
                     <Input
-                      id="name"
-                      name="name"
-                      value={formData.name}
+                      id="subject"
+                      name="subject"
+                      value={formData.subject}
                       onChange={handleInputChange}
-                      placeholder={"namePlaceholder"}
+                      placeholder="Project idea, collaboration, or hire"
                       required
                       className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
                     />
                   </div>
+
                   <div className="space-y-2">
                     <label
-                      htmlFor="email"
+                      htmlFor="message"
                       className="text-sm font-medium text-foreground"
                     >
-                      email
+                      Message
                     </label>
-                    <Input
-                      id="email"
-                      name="email"
-                      type="email"
-                      value={formData.email}
+                    <Textarea
+                      id="message"
+                      name="message"
+                      value={formData.message}
                       onChange={handleInputChange}
-                      placeholder="emailPlaceholder"
+                      placeholder="Tell me about your project, goals, and timeline."
                       required
-                      className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
+                      rows={5}
+                      className="bg-background/50 border-border focus:border-primary transition-colors resize-none mt-1.5"
                     />
                   </div>
-                </div>
 
-                <div className="space-y-2">
-                  <label
-                    htmlFor="subject"
-                    className="text-sm font-medium text-foreground"
+                  <Button
+                    type="submit"
+                    size="lg"
+                    disabled={isSubmitting || isSubmitted}
+                    className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 disabled:opacity-50"
                   >
-                    subject
-                  </label>
-                  <Input
-                    id="subject"
-                    name="subject"
-                    value={formData.subject}
-                    onChange={handleInputChange}
-                    placeholder="subjectPlaceholder"
-                    required
-                    className="bg-background/50 border-border focus:border-primary transition-colors mt-1.5"
-                  />
-                </div>
-
-                <div className="space-y-2">
-                  <label
-                    htmlFor="message"
-                    className="text-sm font-medium text-foreground"
-                  >
-                    message
-                  </label>
-                  <Textarea
-                    id="message"
-                    name="message"
-                    value={formData.message}
-                    onChange={handleInputChange}
-                    placeholder="messagePlaceholder"
-                    required
-                    rows={5}
-                    className="bg-background/50 border-border focus:border-primary transition-colors resize-none mt-1.5"
-                  />
-                </div>
-
-                <Button
-                  type="submit"
-                  size="lg"
-                  disabled={isSubmitting || isSubmitted}
-                  className="w-full bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 disabled:opacity-50"
-                >
-                  {isSubmitted ? (
-                    <>
-                      <CheckCircle className="w-4 h-4 mr-2" />
-                      messageSent
-                    </>
-                  ) : isSubmitting ? (
-                    <>
-                      <div className="w-4 h-4 mr-2 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
-                      sending
-                    </>
-                  ) : (
-                    <>
-                      <Send className="w-4 h-4 mr-2" />
-                      sendMessage
-                    </>
-                  )}
-                </Button>
-              </form>
-            </CardContent>
-          </Card>
-        </div>
+                    {isSubmitted ? (
+                      <>
+                        <CheckCircle className="w-4 h-4 mr-2" />
+                        Message sent
+                      </>
+                    ) : isSubmitting ? (
+                      <>
+                        <div className="w-4 h-4 mr-2 border-2 border-primary-foreground/30 border-t-primary-foreground rounded-full animate-spin" />
+                        Sending...
+                      </>
+                    ) : (
+                      <>
+                        <Send className="w-4 h-4 mr-2" />
+                        Send message
+                      </>
+                    )}
+                  </Button>
+                </form>
+              </CardContent>
+            </Card>
+          </motion.div>
+        </motion.div>
 
         {/* <footer className="mt-20 pt-8 border-t border-border text-center">
           <p className="text-muted-foreground text-sm">"footer</p>

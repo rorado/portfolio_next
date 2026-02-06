@@ -7,9 +7,11 @@ export function Header() {
   const [isScrolled, setIsScrolled] = useState(false);
 
   const pages: { id: string; label: string }[] = [
-    { id: "about", label: "About Me" },
+    { id: "about", label: "About" },
     { id: "experience", label: "Experience" },
+    { id: "education", label: "Education" },
     { id: "projects", label: "Projects" },
+    { id: "skills", label: "Skills" },
     { id: "contact", label: "Contact" },
   ];
 

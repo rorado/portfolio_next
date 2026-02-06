@@ -1,10 +1,24 @@
 "use client";
 
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
+import { motion } from "framer-motion";
 import { Button } from "./ui/button";
 import Image from "next/image";
 
 export function Hero() {
+  const container = {
+    hidden: { opacity: 0 },
+    show: {
+      opacity: 1,
+      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+    },
+  };
+
+  const item = {
+    hidden: { opacity: 0, y: 18 },
+    show: { opacity: 1, y: 0, transition: { duration: 0.6 } },
+  };
+
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
     if (section) section.scrollIntoView({ behavior: "smooth" });
@@ -14,38 +28,44 @@ export function Hero() {
     <section className="relative flex items-center justify-center px-6 py-20 md:py-32 lg:py-40">
       <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
         {/* --- Left Content --- */}
-        <div className="space-y-8">
-          <div className="space-y-4">
+        <motion.div
+          className="space-y-8"
+          variants={container}
+          initial="hidden"
+          animate="show"
+        >
+          <motion.div className="space-y-4" variants={item}>
             <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-balance">
               Sohaib Ahrich
             </h1>
             <h2 className="text-xl md:text-2xl text-muted-foreground font-medium">
-              Full-Stack Developer
+              Full-Stack Developer · UI Engineer
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              I build modern, fast, and beautiful web experiences focusing on
-              clean code, performance, and design that feels alive.
+              I craft fast, accessible, and beautiful web experiences. From
+              design systems to scalable backends, I build products that feel
+              polished, responsive, and delightful.
             </p>
-          </div>
+          </motion.div>
 
-          <div className="flex flex-wrap gap-4">
+          <motion.div className="flex flex-wrap gap-4" variants={item}>
             <Button
               onClick={() => scrollToSection("projects")}
               className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
             >
-              View My Work
+              View Selected Work
             </Button>
             <Button
               variant="outline"
               onClick={() => scrollToSection("contact")}
               className="border-border text-foreground hover:bg-secondary transition-all duration-300 cursor-pointer"
             >
-              Contact Me
+              Let’s Work Together
             </Button>
-          </div>
+          </motion.div>
 
           {/* --- Social Links --- */}
-          <div className="flex items-center gap-6">
+          <motion.div className="flex items-center gap-6" variants={item}>
             <SocialIcon href="https://github.com/rorado" label="GitHub">
               <Github className="w-6 h-6" />
             </SocialIcon>
@@ -58,11 +78,16 @@ export function Hero() {
             <SocialIcon href="mailto:sohaybahrich3@gmail.com" label="Email">
               <Mail className="w-6 h-6" />
             </SocialIcon>
-          </div>
-        </div>
+          </motion.div>
+        </motion.div>
 
         {/* --- Right Visual --- */}
-        <div className="relative flex justify-center">
+        <motion.div
+          className="relative flex justify-center"
+          initial={{ opacity: 0, scale: 0.95 }}
+          animate={{ opacity: 1, scale: 1 }}
+          transition={{ duration: 0.7, delay: 0.2 }}
+        >
           <div className="w-full max-w-sm h-96 bg-linear-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center shadow-lg">
             <Image
               src="/imagepo.webp"
@@ -72,7 +97,7 @@ export function Hero() {
               className="rounded-25xl"
             />
           </div>
-        </div>
+        </motion.div>
       </div>
 
       {/* --- Scroll Down Button --- */}
