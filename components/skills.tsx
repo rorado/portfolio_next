@@ -47,8 +47,8 @@ export function Skills() {
       ],
     },
     {
-      title: "Tooling & DevOps",
-      skills: ["Git", "Vercel", "Docker", "CI/CD", "Storybook", "Figma"],
+      title: "Tooling",
+      skills: ["Git", "Vercel", "GitHub", "VS Code", "shell"],
     },
   ];
 

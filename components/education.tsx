@@ -1,6 +1,6 @@
 "use client";
 
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export function Education() {
   const container = {
@@ -11,9 +11,28 @@ export function Education() {
     },
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  const itemLeft: Variants = {
+    hidden: { opacity: 0, x: -90 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 3,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
+  const itemRight: Variants = {
+    hidden: { opacity: 0, x: 90 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 3,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
   };
 
   const education = [
@@ -55,38 +74,47 @@ export function Education() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          {education.map((edu, index) => (
-            <motion.div key={index} className="group" variants={item}>
-              <div className="grid lg:grid-cols-4 gap-6">
-                <div className="lg:col-span-1">
-                  <p className="text-sm font-mono">{edu.period}</p>
-                </div>
-
-                <div className="lg:col-span-3 space-y-4">
+          {education.map((edu, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <motion.div
+                key={index}
+                className="group"
+                variants={isEven ? itemLeft : itemRight}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.3 }}
+              >
+                <div className="grid lg:grid-cols-4 gap-6">
+                  <div className="lg:col-span-1">
+                    <p className="text-sm font-mono">{edu.period}</p>
+                  </div>
                   <div className="lg:col-span-3 space-y-4">
-                    <h3 className="text-xl font-semibold transition-colors">
-                      {edu.school}
-                    </h3>
-                  </div>
+                    <div className="lg:col-span-3 space-y-4">
+                      <h3 className="text-xl font-semibold transition-colors">
+                        {edu.school}
+                      </h3>
+                    </div>
 
-                  <p className="text-muted-foreground leading-relaxed">
-                    {edu.details}
-                  </p>
+                    <p className="text-muted-foreground leading-relaxed">
+                      {edu.details}
+                    </p>
 
-                  <div className="flex flex-wrap gap-2">
-                    {edu.highlights.map((item, itemIndex) => (
-                      <span
-                        key={itemIndex}
-                        className="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full"
-                      >
-                        {item}
-                      </span>
-                    ))}
+                    <div className="flex flex-wrap gap-2">
+                      {edu.highlights.map((item, itemIndex) => (
+                        <span
+                          key={itemIndex}
+                          className="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full"
+                        >
+                          {item}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

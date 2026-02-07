@@ -1,20 +1,39 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
-import { motion } from "framer-motion";
+import { motion, Variants } from "framer-motion";
 
 export function Experience() {
   const container = {
     hidden: { opacity: 0 },
     show: {
       opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+      transition: { staggerChildren: 0.12, delayChildren: 0.8 },
     },
   };
 
-  const item = {
-    hidden: { opacity: 0, y: 16 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
+  const itemLeft: Variants = {
+    hidden: { opacity: 0, x: -90 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 3,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
+  };
+
+  const itemRight: Variants = {
+    hidden: { opacity: 0, x: 90 },
+    show: {
+      opacity: 1,
+      x: 0,
+      transition: {
+        duration: 3,
+        ease: [0.16, 1, 0.3, 1],
+      },
+    },
   };
 
   const experiences = [
@@ -88,48 +107,58 @@ export function Experience() {
           whileInView="show"
           viewport={{ once: true }}
         >
-          {experiences.map((exp, index) => (
-            <motion.div key={index} className="group" variants={item}>
-              <div className="grid lg:grid-cols-4 gap-6">
-                <div className="lg:col-span-1">
-                  <p className="text-sm font-mono">{exp.period}</p>
-                </div>
-
-                <div className="lg:col-span-3 space-y-4">
-                  <div className="flex items-center gap-2">
-                    <h3 className="text-xl font-semibold transition-colors">
-                      {exp.title} · {exp.company}
-                    </h3>
-                    {exp.live && (
-                      <a
-                        href={exp.live}
-                        target="_blank"
-                        rel="noopener noreferrer"
-                        className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
-                      >
-                        <ExternalLink className="w-4 h-4  transition-opacity" />
-                      </a>
-                    )}
+          {experiences.map((exp, index) => {
+            const isEven = index % 2 === 0;
+            return (
+              <motion.div
+                key={index}
+                className="group"
+                variants={isEven ? itemLeft : itemRight}
+                initial="hidden"
+                whileInView="show"
+                viewport={{ amount: 0.3 }}
+              >
+                <div className="grid lg:grid-cols-4 gap-6">
+                  <div className="lg:col-span-1">
+                    <p className="text-sm font-mono">{exp.period}</p>
                   </div>
 
-                  <p className="text-muted-foreground leading-relaxed">
-                    {exp.description}
-                  </p>
+                  <div className="lg:col-span-3 space-y-4">
+                    <div className="flex items-center gap-2">
+                      <h3 className="text-xl font-semibold transition-colors">
+                        {exp.title} · {exp.company}
+                      </h3>
+                      {exp.live && (
+                        <a
+                          href={exp.live}
+                          target="_blank"
+                          rel="noopener noreferrer"
+                          className="text-muted-foreground hover:text-primary transition-colors cursor-pointer"
+                        >
+                          <ExternalLink className="w-4 h-4  transition-opacity" />
+                        </a>
+                      )}
+                    </div>
 
-                  <div className="flex flex-wrap gap-2">
-                    {exp.technologies.map((tech, techIndex) => (
-                      <span
-                        key={techIndex}
-                        className="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full"
-                      >
-                        {tech}
-                      </span>
-                    ))}
+                    <p className="text-muted-foreground leading-relaxed">
+                      {exp.description}
+                    </p>
+
+                    <div className="flex flex-wrap gap-2">
+                      {exp.technologies.map((tech, techIndex) => (
+                        <span
+                          key={techIndex}
+                          className="px-3 py-1 text-xs bg-accent/20 text-accent rounded-full"
+                        >
+                          {tech}
+                        </span>
+                      ))}
+                    </div>
                   </div>
                 </div>
-              </div>
-            </motion.div>
-          ))}
+              </motion.div>
+            );
+          })}
         </motion.div>
       </div>
     </section>

@@ -29,10 +29,9 @@ function getSystemPreference(): "light" | "dark" {
 }
 
 function applyTheme(theme: "light" | "dark") {
-    if (document.documentElement.getAttribute("data-theme") !== theme) {
-      document.documentElement.setAttribute("data-theme", theme);
-      console.log("Applied theme:", theme);
-    }
+  if (document.documentElement.getAttribute("data-theme") !== theme) {
+    document.documentElement.setAttribute("data-theme", theme);
+  }
 }
 
 export function ThemeProvider({ children }: { children: React.ReactNode }) {
@@ -66,7 +65,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
 
   const theme: "light" | "dark" = useMemo(
     () => (mode === "system" ? getSystemPreference() : mode),
-    [mode]
+    [mode],
   );
 
   const value: ThemeContextType = useMemo(
@@ -76,7 +75,7 @@ export function ThemeProvider({ children }: { children: React.ReactNode }) {
       setMode,
       toggle: () => setMode((prev) => (prev === "dark" ? "light" : "dark")),
     }),
-    [theme, mode]
+    [theme, mode],
   );
 
   return (

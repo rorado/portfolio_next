@@ -25,7 +25,10 @@ export function Hero() {
   };
 
   return (
-    <section className="relative flex items-center justify-center px-6 py-20 md:py-32 lg:py-40">
+    <section
+      className="relative flex items-center justify-center px-6 py-20 md:py-32 lg:py-40"
+      id="hero"
+    >
       <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
         {/* --- Left Content --- */}
         <motion.div
@@ -49,16 +52,29 @@ export function Hero() {
           </motion.div>
 
           <motion.div className="flex flex-wrap gap-4" variants={item}>
-            <Button
-              onClick={() => scrollToSection("projects")}
-              className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300"
+            <motion.div
+              className="flex items-center gap-4"
+              initial={{ scale: 0.95 }}
+              animate={{ scale: 1.1 }}
+              transition={{
+                duration: 2,
+                delay: 0.4,
+                ease: "easeOut",
+                repeat: Infinity,
+                repeatType: "reverse",
+              }}
             >
-              View Selected Work
-            </Button>
+              <Button
+                onClick={() => scrollToSection("projects")}
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300  cursor-pointer"
+              >
+                View Selected Work
+              </Button>
+            </motion.div>
             <Button
               variant="outline"
               onClick={() => scrollToSection("contact")}
-              className="border-border text-foreground hover:bg-secondary transition-all duration-300 cursor-pointer"
+              className="border-border text-foreground hover:bg-background hover:scale-95 transition-all duration-300 cursor-pointer"
             >
               Let’s Work Together
             </Button>
