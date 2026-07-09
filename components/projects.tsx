@@ -2,25 +2,67 @@
 
 import { Card, CardContent } from "@/components/ui/card";
 import { ExternalLink, Github } from "lucide-react";
-import { motion } from "framer-motion";
-// import { useLanguage } from "@/components/language-context"
-// import { getTranslation } from "@/lib/i18n"
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap, initGsap } from "@/lib/gsap";
+import {
+  setupHoverLiftAnimation,
+  scaleRevealAnimation,
+} from "@/lib/animations";
 
 export function Projects() {
-  //   const { language } = useLanguage()
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
+  useGSAP(
+    () => {
+      initGsap();
+
+      // Staggered scale and fade in
+      gsap.from(".project-card", {
+        opacity: 0,
+        y: 40,
+        scale: 0.92,
+        duration: 0.75,
+        stagger: 0.18,
+        ease: "back.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 72%",
+          once: true,
+        },
+      });
+
+      // Setup hover lift animations on all cards
+      setupHoverLiftAnimation(".project-card");
+
+      // Image parallax on scroll
+      gsap.utils.toArray<HTMLElement>(".project-image").forEach((img) => {
+        gsap.to(img, {
+          y: 20,
+          scrollTrigger: {
+            trigger: img,
+            start: "top center",
+            end: "center center",
+            scrub: 1.5,
+          },
+        });
+      });
+
+      // Accent line reveal
+      gsap.to(".projects-accent-line", {
+        scaleX: 1,
+        transformOrigin: "left center",
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 72%",
+          toggleActions: "play none none none",
+        },
+      });
     },
-  };
-
-  const item = {
-    hidden: { opacity: 0, y: 18 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+    { scope: sectionRef },
+  );
 
   const projects = [
     {
@@ -75,24 +117,18 @@ export function Projects() {
   ];
 
   return (
-    <section id="projects" className="py-20 px-6">
+    <section ref={sectionRef} id="projects" className="py-20 px-6">
       <div className="container mx-auto">
         <div className="space-y-3">
           <h2 className="text-sm uppercase tracking-widest font-semibold">
             Selected Projects
           </h2>
-          <div className="w-12 h-0.5 bg-primary mb-6"></div>
+          <div className="w-12 h-0.5 bg-primary mb-6 projects-accent-line transform scale-x-0"></div>
         </div>
 
-        <motion.div
-          className="grid md:grid-cols-2 lg:grid-cols-3 gap-8"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
+        <div className="grid md:grid-cols-2 lg:grid-cols-3 gap-8">
           {projects.map((project, index) => (
-            <motion.div key={index} variants={item}>
+            <div key={index} className="project-card">
               <Card className="group border-border hover:border-primary/50 hover:shadow-lg hover:scale-[1.02] transition-all duration-300">
                 <CardContent className="p-0">
                   <div className="relative overflow-hidden rounded-t-lg cursor-pointer ">
@@ -100,13 +136,13 @@ export function Projects() {
                       <img
                         src={project.image || "/placeholder.svg"}
                         alt={project.title}
-                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105"
+                        className="w-full h-48 object-cover transition-transform duration-300 group-hover:scale-105 project-image"
                       />
                     ) : (
                       <div className="w-full h-48 bg-muted flex items-center justify-center text-foreground/50" />
                     )}
 
-                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 bg-gradient-to-t from-background/60 via-background/20 to-transparent">
+                    <div className="absolute inset-0 opacity-0 group-hover:opacity-100 transition-opacity duration-300 flex items-center justify-center gap-4 bg-linear-to-t from-background/60 via-background/20 to-transparent">
                       <a
                         href={project.github}
                         target="_blank"
@@ -152,9 +188,9 @@ export function Projects() {
                   </div>
                 </CardContent>
               </Card>
-            </motion.div>
+            </div>
           ))}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

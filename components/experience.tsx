@@ -1,40 +1,63 @@
 "use client";
 
 import { ExternalLink } from "lucide-react";
-import { motion, Variants } from "framer-motion";
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap, initGsap } from "@/lib/gsap";
+import { setupHoverLiftAnimation } from "@/lib/animations";
 
 export function Experience() {
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.8 },
-    },
-  };
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const itemLeft: Variants = {
-    hidden: { opacity: 0, x: -90 },
-    show: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 3,
-        ease: [0.16, 1, 0.3, 1],
-      },
-    },
-  };
+  useGSAP(
+    () => {
+      initGsap();
 
-  const itemRight: Variants = {
-    hidden: { opacity: 0, x: 90 },
-    show: {
-      opacity: 1,
-      x: 0,
-      transition: {
-        duration: 3,
-        ease: [0.16, 1, 0.3, 1],
-      },
+      // Enhanced stagger animations
+      gsap.from(".experience-item-left", {
+        x: -100,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        stagger: 0.25,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "restart none restart none",
+        },
+      });
+
+      gsap.from(".experience-item-right", {
+        x: 100,
+        opacity: 0,
+        duration: 1.2,
+        ease: "power3.out",
+        stagger: 0.25,
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "restart none restart none",
+        },
+      });
+
+      // Hover lift effect for experience items
+      setupHoverLiftAnimation(".experience-item-left, .experience-item-right");
+
+      // Rotate accent line on scroll
+      gsap.to(".experience-accent-line", {
+        scaleX: 1,
+        transformOrigin: "left center",
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      });
     },
-  };
+    { scope: sectionRef },
+  );
 
   const experiences = [
     {
@@ -91,32 +114,22 @@ export function Experience() {
   ];
 
   return (
-    <section id="experience" className="py-20 px-6 ">
+    <section ref={sectionRef} id="experience" className="py-20 px-6 ">
       <div className="container mx-auto">
         <div className="space-y-3">
           <h2 className="text-sm uppercase tracking-widest font-semibold">
             Experience
           </h2>
-          <div className="w-12 h-0.5 bg-primary mb-6"></div>
+          <div className="w-12 h-0.5 bg-primary mb-6 experience-accent-line transform scale-x-0"></div>
         </div>
 
-        <motion.div
-          className="space-y-12"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
+        <div className="space-y-12">
           {experiences.map((exp, index) => {
             const isEven = index % 2 === 0;
             return (
-              <motion.div
+              <div
                 key={index}
-                className="group"
-                variants={isEven ? itemLeft : itemRight}
-                initial="hidden"
-                whileInView="show"
-                viewport={{ amount: 0.3 }}
+                className={`group ${isEven ? "experience-item-left" : "experience-item-right"}`}
               >
                 <div className="grid lg:grid-cols-4 gap-6">
                   <div className="lg:col-span-1">
@@ -156,10 +169,10 @@ export function Experience() {
                     </div>
                   </div>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
-        </motion.div>
+        </div>
       </div>
     </section>
   );

@@ -1,7 +1,8 @@
-
 @import "tailwindcss";
 
 @import "tw-animate-css";
+
+@import "./animations.css";
 
 @custom-variant dark (&:is(.dark *));
 
@@ -112,7 +113,6 @@
   background: hsl(var(--muted-foreground));
 }
 
-
 .bg-bg {
-    background-color: var(--bg);
+  background-color: var(--bg);
 }

@@ -9,24 +9,86 @@ import { Input } from "@/components/ui/input";
 import { Textarea } from "@/components/ui/textarea";
 import { Mail, MapPin, Phone, Send, CheckCircle } from "lucide-react";
 import { sendMail } from "@/lib/sendEmail";
-import { motion } from "framer-motion";
-// import { useLanguage } from "@/components/language-context"
-// import { getTranslation } from "@/lib/i18n"
+import { useRef } from "react";
+import { useGSAP } from "@gsap/react";
+import { gsap, initGsap } from "@/lib/gsap";
+import { setupHoverLiftAnimation } from "@/lib/animations";
 
 export function Contact() {
-  //   const { language } = useLanguage()
-  const container = {
-    hidden: { opacity: 0 },
-    show: {
-      opacity: 1,
-      transition: { staggerChildren: 0.12, delayChildren: 0.1 },
-    },
-  };
+  const sectionRef = useRef<HTMLElement>(null);
 
-  const item = {
-    hidden: { opacity: 0, y: 18 },
-    show: { opacity: 1, y: 0, transition: { duration: 0.5 } },
-  };
+  useGSAP(
+    () => {
+      initGsap();
+
+      // Enhanced card entrance
+      gsap.from(".contact-card", {
+        opacity: 0,
+        y: 30,
+        scale: 0.9,
+        duration: 0.75,
+        stagger: 0.15,
+        ease: "back.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          once: true,
+        },
+      });
+
+      // Form entrance with blur
+      gsap.from(".contact-form", {
+        opacity: 0,
+        x: 80,
+        filter: "blur(10px)",
+        duration: 0.9,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          once: true,
+        },
+      });
+
+      // Setup hover lift on cards
+      setupHoverLiftAnimation(".contact-card");
+
+      // Accent line reveal
+      gsap.to(".contact-accent-line", {
+        scaleX: 1,
+        transformOrigin: "left center",
+        duration: 0.8,
+        ease: "power3.out",
+        scrollTrigger: {
+          trigger: sectionRef.current,
+          start: "top 75%",
+          toggleActions: "play none none none",
+        },
+      });
+
+      // Icon pulse on hover
+      const icons = gsap.utils.toArray<HTMLElement>(".contact-icon");
+      icons.forEach((icon) => {
+        icon.addEventListener("mouseenter", () => {
+          gsap.to(icon, {
+            scale: 1.3,
+            rotation: 15,
+            duration: 0.3,
+            ease: "elastic.out(1, 0.4)",
+          });
+        });
+        icon.addEventListener("mouseleave", () => {
+          gsap.to(icon, {
+            scale: 1,
+            rotation: 0,
+            duration: 0.3,
+            ease: "elastic.out(1, 0.4)",
+          });
+        });
+      });
+    },
+    { scope: sectionRef },
+  );
   const [formData, setFormData] = useState({
     name: "",
     email: "",
@@ -69,29 +131,23 @@ export function Contact() {
   };
 
   return (
-    <section id="contact" className="py-20 px-6">
+    <section ref={sectionRef} id="contact" className="py-20 px-6">
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-balance ">
-            Let’s build something great
+            Let&apos;s build something great
           </h2>
-          <div className="w-12 h-0.5 bg-primary mb-6 mx-auto"></div>
+          <div className="w-12 h-0.5 bg-primary mb-6 mx-auto contact-accent-line transform scale-x-0"></div>
         </div>
 
-        <motion.div
-          className="grid lg:grid-cols-2 gap-12 mb-12"
-          variants={container}
-          initial="hidden"
-          whileInView="show"
-          viewport={{ once: true }}
-        >
+        <div className="grid lg:grid-cols-2 gap-12 mb-12">
           {/* Contact Info Cards */}
           <div className="space-y-6">
             <div className="grid gap-6">
-              <motion.div variants={item}>
+              <div className="contact-card">
                 <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
                   <CardContent className="p-6 flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center contact-icon">
                       <Mail className="w-6 h-6 text-primary" />
                     </div>
                     <div>
@@ -104,12 +160,12 @@ export function Contact() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div variants={item}>
+              <div className="contact-card">
                 <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
                   <CardContent className="p-6 flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center contact-icon">
                       <Phone className="w-6 h-6 text-primary" />
                     </div>
                     <div>
@@ -120,12 +176,12 @@ export function Contact() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
 
-              <motion.div variants={item}>
+              <div className="contact-card">
                 <Card className="bg-card/50 border-border hover:bg-card/80 transition-all duration-300 hover:shadow-lg hover:shadow-primary/10">
                   <CardContent className="p-6 flex items-center space-x-4">
-                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center">
+                    <div className="w-12 h-12 bg-primary/20 rounded-full flex items-center justify-center contact-icon">
                       <MapPin className="w-6 h-6 text-primary" />
                     </div>
                     <div>
@@ -136,12 +192,12 @@ export function Contact() {
                     </div>
                   </CardContent>
                 </Card>
-              </motion.div>
+              </div>
             </div>
           </div>
 
           {/* Contact Form */}
-          <motion.div variants={item}>
+          <div className="contact-form">
             <Card className="bg-card/50 border-border">
               <CardContent className="p-8">
                 <form onSubmit={handleSubmit} className="space-y-6">
@@ -246,8 +302,8 @@ export function Contact() {
                 </form>
               </CardContent>
             </Card>
-          </motion.div>
-        </motion.div>
+          </div>
+        </div>
 
         {/* <footer className="mt-20 pt-8 border-t border-border text-center">
           <p className="text-muted-foreground text-sm">"footer</p>
