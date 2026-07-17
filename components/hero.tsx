@@ -135,10 +135,10 @@ export function Hero() {
 
         {/* --- Right Visual --- */}
         <div className="relative flex justify-center hero-visual">
-          <div className="relative aspect-square w-full max-w-sm rounded-3xl">
+          <div className="relative aspect-square w-full max-w-lg rounded-3xl">
             {/* Accessible / no-JS / reduced-motion / unsupported-WebGL fallback.
                 Cross-fades out once the 3D scene takes over. */}
-            <div
+            {/* <div
               className={`absolute inset-0 flex items-center justify-center rounded-3xl bg-linear-to-br from-primary/20 to-accent/20 shadow-lg transition-opacity duration-700 ${
                 enabled ? "opacity-0" : "opacity-100"
               }`}
@@ -151,7 +151,7 @@ export function Hero() {
                 priority
                 className="rounded-3xl"
               />
-            </div>
+            </div> */}
 
             {enabled && (
               <Suspense fallback={null}>
