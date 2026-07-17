@@ -5,14 +5,22 @@ export default function ThemeInitializer() {
   useEffect(() => {
     try {
       const saved = localStorage.getItem("eliteshop-theme");
-      const prefersDark = window.matchMedia("(prefers-color-scheme: dark)").matches;
+      const prefersDark = window.matchMedia(
+        "(prefers-color-scheme: dark)",
+      ).matches;
       const theme =
         saved === "light" || saved === "dark"
           ? saved
           : prefersDark
-          ? "dark"
-          : "light";
+            ? "dark"
+            : "light";
       document.documentElement.setAttribute("data-theme", theme);
+      // Remove preload class so animations can run without FOUC
+      try {
+        document.body.classList.remove("preload");
+      } catch (e) {
+        /* ignore in non-browser env */
+      }
     } catch (e) {
       console.error("Theme init failed:", e);
     }

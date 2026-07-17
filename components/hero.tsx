@@ -3,82 +3,40 @@
 import { ArrowDown, Github, Linkedin, Mail } from "lucide-react";
 import { Button } from "./ui/button";
 import Image from "next/image";
-import { useRef, useEffect } from "react";
+import dynamic from "next/dynamic";
+import { Suspense, useRef } from "react";
 import { useGSAP } from "@gsap/react";
 import { gsap, initGsap } from "@/lib/gsap";
-import {
-  floatingAnimation,
-  setupMagneticButton,
-  glowPulseAnimation,
-} from "@/lib/animations";
+import { use3DCapability } from "@/components/three/use-3d-capability";
+
+const HeroScene = dynamic(() => import("@/components/three/hero-scene"), {
+  ssr: false,
+});
 
 export function Hero() {
   const sectionRef = useRef<HTMLElement>(null);
+  const { enabled, isMobile } = use3DCapability();
 
   useGSAP(
     () => {
       initGsap();
 
-      // Premium timeline with multiple layers
-      const introTimeline = gsap.timeline({
-        defaults: { ease: "power3.out" },
-      });
+      const introTimeline = gsap.timeline({ defaults: { ease: "power3.out" } });
 
-      // Staggered text reveal with blur effect
       introTimeline
-        .from(
-          ".hero-title",
-          {
-            opacity: 0,
-            y: 50,
-            filter: "blur(10px)",
-            duration: 0.95,
-            ease: "power3.out",
-          },
-          0,
-        )
-        .from(
-          ".hero-subtitle",
-          {
-            opacity: 0,
-            y: 30,
-            filter: "blur(8px)",
-            duration: 0.8,
-            ease: "power3.out",
-          },
-          "-=0.6",
-        )
-        .from(
-          ".hero-description",
-          {
-            opacity: 0,
-            y: 25,
-            filter: "blur(6px)",
-            duration: 0.75,
-            ease: "power3.out",
-          },
-          "-=0.5",
-        )
-        .from(
-          ".hero-copy",
-          {
-            opacity: 0,
-            y: 20,
-            duration: 0.7,
-            stagger: 0.12,
-            ease: "power3.out",
-          },
-          "-=0.4",
-        )
+        .from(".hero-copy", {
+          opacity: 0,
+          y: 26,
+          duration: 0.85,
+          stagger: 0.14,
+        })
         .from(
           ".hero-social",
           {
             opacity: 0,
-            y: 15,
-            scale: 0.8,
+            y: 18,
             duration: 0.6,
-            stagger: 0.1,
-            ease: "back.out",
+            stagger: 0.09,
           },
           "-=0.35",
         )
@@ -86,66 +44,31 @@ export function Hero() {
           ".hero-visual",
           {
             opacity: 0,
-            scale: 0.85,
-            filter: "blur(15px)",
-            y: 40,
-            duration: 1.1,
-            ease: "power3.out",
+            scale: 0.92,
+            y: 12,
+            duration: 0.9,
           },
-          "-=0.6",
+          "<",
         );
 
-      // Enhanced floating animations
-      floatingAnimation(".hero-primary-cta", 8, 3.5);
-      floatingAnimation(".hero-scroll-icon", 12, 2.8);
-
-      // Glow effect on buttons
-      glowPulseAnimation(".hero-primary-cta");
-
-      // Parallax background elements
-      gsap.to(".hero-bg-glow-1", {
-        y: 30,
-        opacity: 0.6,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom center",
-          scrub: 0.5,
-        },
+      gsap.to(".hero-primary-cta", {
+        y: -5,
+        duration: 1.7,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
       });
 
-      gsap.to(".hero-bg-glow-2", {
-        y: -40,
-        opacity: 0.4,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top top",
-          end: "bottom center",
-          scrub: 0.7,
-        },
-      });
-
-      // Subtle rotation for visual interest
-      gsap.to(".hero-visual", {
-        rotation: 2,
-        y: 20,
-        scrollTrigger: {
-          trigger: sectionRef.current,
-          start: "top center",
-          end: "center center",
-          scrub: 1,
-        },
+      gsap.to(".hero-scroll-icon", {
+        y: 9,
+        duration: 1.2,
+        repeat: -1,
+        yoyo: true,
+        ease: "sine.inOut",
       });
     },
     { scope: sectionRef },
   );
-
-  // Setup magnetic button effect
-  useEffect(() => {
-    if (sectionRef.current) {
-      setupMagneticButton(".hero-primary-cta");
-    }
-  }, []);
 
   const scrollToSection = (id: string) => {
     const section = document.getElementById(id);
@@ -158,37 +81,30 @@ export function Hero() {
       className="relative flex items-center justify-center px-6 py-20 md:py-32 lg:py-40"
       id="hero"
     >
-      {/* Animated background elements */}
-      <div className="absolute inset-0 pointer-events-none">
-        <div className="absolute top-1/3 right-0 w-96 h-96 bg-primary/15 blur-[120px] rounded-full translate-x-1/3 hero-bg-glow-1" />
-        <div className="absolute bottom-1/4 left-0 w-80 h-80 bg-accent/10 blur-[100px] rounded-full -translate-x-1/3 hero-bg-glow-2" />
-      </div>
-
-      <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center relative z-10">
+      <div className="container mx-auto grid lg:grid-cols-2 gap-12 items-center">
         {/* --- Left Content --- */}
         <div className="space-y-8">
-          <div className="space-y-4">
-            <h1 className="hero-title text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-balance">
+          <div className="space-y-4 hero-copy">
+            <h1 className="text-5xl md:text-6xl lg:text-7xl font-extrabold tracking-tight leading-tight text-balance">
               Sohaib Ahrich
             </h1>
-            <h2 className="hero-subtitle text-xl md:text-2xl text-muted-foreground font-medium">
+            <h2 className="text-xl md:text-2xl text-muted-foreground font-medium">
               Full-Stack Developer
             </h2>
-            <p className="hero-description text-lg text-muted-foreground leading-relaxed max-w-2xl">
+            <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
               I craft fast, accessible, and beautiful web experiences. From
               design systems to scalable backends, I build products that feel
               polished, responsive, and delightful.
             </p>
           </div>
 
-          <div className="flex flex-wrap gap-4">
+          <div className="flex flex-wrap gap-4 hero-copy">
             <div className="flex items-center gap-4 hero-primary-cta">
               <Button
                 onClick={() => scrollToSection("projects")}
-                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300 cursor-pointer relative overflow-hidden group"
+                className="bg-primary text-primary-foreground hover:bg-primary/90 transition-all duration-300  cursor-pointer"
               >
-                <span className="relative z-10">View Selected Work</span>
-                <span className="absolute inset-0 bg-linear-to-r from-transparent via-white/20 to-transparent transform scale-x-0 group-hover:scale-x-100 transition-transform duration-500" />
+                View Selected Work
               </Button>
             </div>
             <Button
@@ -196,37 +112,52 @@ export function Hero() {
               onClick={() => scrollToSection("contact")}
               className="border-border text-foreground hover:bg-background hover:scale-95 transition-all duration-300 cursor-pointer"
             >
-              Let&apos;s Work Together
+              Let’s Work Together
             </Button>
           </div>
 
           {/* --- Social Links --- */}
-          <div className="flex items-center gap-6">
+          <div className="flex items-center gap-6 hero-copy hero-social hover">
             <SocialIcon href="https://github.com/rorado" label="GitHub">
-              <Github className="w-6 h-6 hover:scale-130 transition-all duration-300" />
+              <Github className="w-6 h-6" />
             </SocialIcon>
             <SocialIcon
               href="https://www.linkedin.com/in/sohaib-ahrich"
               label="LinkedIn"
             >
-              <Linkedin className="w-6 h-6 hover:scale-130 transition-all duration-300" />
+              <Linkedin className="w-6 h-6" />
             </SocialIcon>
             <SocialIcon href="mailto:sohaybahrich3@gmail.com" label="Email">
-              <Mail className="w-6 h-6 hover:scale-130 transition-all duration-300" />
+              <Mail className="w-6 h-6" />
             </SocialIcon>
           </div>
         </div>
 
         {/* --- Right Visual --- */}
         <div className="relative flex justify-center hero-visual">
-          <div className="w-full max-w-sm h-96 bg-linear-to-br from-primary/20 to-accent/20 rounded-3xl flex items-center justify-center shadow-lg">
-            <Image
-              src="/imagepo.webp"
-              alt="SA"
-              width={500}
-              height={500}
-              className="rounded-25xl"
-            />
+          <div className="relative aspect-square w-full max-w-sm rounded-3xl">
+            {/* Accessible / no-JS / reduced-motion / unsupported-WebGL fallback.
+                Cross-fades out once the 3D scene takes over. */}
+            <div
+              className={`absolute inset-0 flex items-center justify-center rounded-3xl bg-linear-to-br from-primary/20 to-accent/20 shadow-lg transition-opacity duration-700 ${
+                enabled ? "opacity-0" : "opacity-100"
+              }`}
+            >
+              <Image
+                src="/imagepo.webp"
+                alt="Sohaib Ahrich"
+                width={500}
+                height={500}
+                priority
+                className="rounded-3xl"
+              />
+            </div>
+
+            {enabled && (
+              <Suspense fallback={null}>
+                <HeroScene sectionRef={sectionRef} isMobile={isMobile} />
+              </Suspense>
+            )}
           </div>
         </div>
       </div>

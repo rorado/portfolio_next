@@ -333,6 +333,19 @@ textarea:focus-visible {
   color-scheme: dark;
 }
 
+/* Ensure elements marked for animation start hidden until GSAP runs */
+.pre-animate {
+  opacity: 0;
+  transform: translateY(10px);
+  will-change: opacity, transform;
+}
+
+.preload .pre-animate {
+  /* extra safety while preload class exists */
+  opacity: 0 !important;
+  transform: translateY(10px) !important;
+}
+
 /* ===========================================
    OPACITY ANIMATION
    =========================================== */

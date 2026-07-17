@@ -5,11 +5,19 @@ import "./theme.css";
 
 import ClientProviderWrapper from "@/components/provideres/ClientProviderWrapper";
 import ThemeInitializer from "@/components/provideres/ThemeInitializer";
+import CanvasRootMount from "@/components/three/canvas-root-mount";
 import { Metadata } from "next";
 
 const inter = Inter({ subsets: ["latin"], variable: "--font-sans" });
-const jetbrainsMono = JetBrains_Mono({ subsets: ["latin"], variable: "--font-mono" });
-const poppins = Poppins({ subsets: ["latin"], weight: ["400", "600"], variable: "--font-poppins" });
+const jetbrainsMono = JetBrains_Mono({
+  subsets: ["latin"],
+  variable: "--font-mono",
+});
+const poppins = Poppins({
+  subsets: ["latin"],
+  weight: ["400", "600"],
+  variable: "--font-poppins",
+});
 
 interface RootLayoutProps {
   children: ReactNode;
@@ -20,16 +28,17 @@ export const metadata: Metadata = {
   description: "portfolio",
 };
 
-export default async function RootLayout({ children}: RootLayoutProps) {
+export default async function RootLayout({ children }: RootLayoutProps) {
   // ✅ Await params before accessing
 
   return (
-    <html className={`${inter.variable} ${jetbrainsMono.variable} ${poppins.variable}`}>
-      <body className="font-sans antialiased bg-bg text-text dark:bg-bg dark:text-text">
-        <ThemeInitializer /> 
-        <ClientProviderWrapper>
-          {children}
-        </ClientProviderWrapper>
+    <html
+      className={`${inter.variable} ${jetbrainsMono.variable} ${poppins.variable}`}
+    >
+      <body className="preload font-sans antialiased bg-bg text-text dark:bg-bg dark:text-text">
+        <ThemeInitializer />
+        <CanvasRootMount />
+        <ClientProviderWrapper>{children}</ClientProviderWrapper>
       </body>
     </html>
   );
