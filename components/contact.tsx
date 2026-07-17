@@ -135,7 +135,9 @@ export function Contact() {
       <div className="container mx-auto">
         <div className="text-center space-y-4 mb-12">
           <h2 className="text-3xl lg:text-4xl font-bold text-balance ">
-            Let&apos;s build something great
+            Have a project in mind? I&rsquo;m currently available for freelance
+            work and full-time opportunities. Let&rsquo;s discuss how we can
+            build something exceptional together.
           </h2>
           <div className="w-12 h-0.5 bg-primary mb-6 mx-auto contact-accent-line transform scale-x-0"></div>
         </div>

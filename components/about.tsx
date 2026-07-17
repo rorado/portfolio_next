@@ -96,9 +96,9 @@ export function About() {
               solutions from concept to launch.
             </p>
             <p>
-              When I&apos;m not coding, I explore new frameworks, study design
-              systems, and contribute to open‑source tools that help teams ship
-              faster.
+              Outside of work, I enjoy solving programming challenges, refining
+              my coding skills, and exploring better ways to build scalable web
+              applications.
             </p>
           </div>
         </div>

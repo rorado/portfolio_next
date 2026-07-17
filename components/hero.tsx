@@ -92,9 +92,9 @@ export function Hero() {
               Full-Stack Developer
             </h2>
             <p className="text-lg text-muted-foreground leading-relaxed max-w-2xl">
-              I craft fast, accessible, and beautiful web experiences. From
-              design systems to scalable backends, I build products that feel
-              polished, responsive, and delightful.
+              Building modern web applications with React, Next.js, TypeScript,
+              and Node.js—focused on performance, accessibility, and exceptional
+              user experience.
             </p>
           </div>
 
